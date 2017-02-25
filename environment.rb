@@ -1,5 +1,5 @@
 require 'active_record'
-require 'sqlite3'
+require 'pg'
 
 # recursively requires all files in ./lib and down that end in .rb
 Dir.glob('./lib/*').each do |folder|
@@ -10,6 +10,8 @@ end
 
 # tells AR what db file to use
 ActiveRecord::Base.establish_connection(
-  adapter: 'sqlite3',
-  database: 'edm_scraper.db',
+  adapter: 'postgresql',
+  host: 'localhost',
+  username: 'user',
+  database: 'edm-scraper',
 )

@@ -1,7 +1,7 @@
 source "http://rubygems.org"
 
 gem "activerecord"
-gem "sqlite3"
+gem "pg"
 gem "capybara"
 gem "poltergeist"
 
