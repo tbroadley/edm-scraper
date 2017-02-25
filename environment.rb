@@ -9,9 +9,15 @@ Dir.glob('./lib/*').each do |folder|
 end
 
 # tells AR what db file to use
-ActiveRecord::Base.establish_connection(
-  adapter: 'postgresql',
-  host: 'localhost',
-  username: 'user',
-  database: 'edm-scraper',
-)
+if (ENV['DATABASE_ENV'] || 'development') == 'development'
+  ActiveRecord::Base.establish_connection(
+    adapter: 'postgresql',
+    host: 'localhost',
+    username: 'user',
+    database: 'edm-scraper',
+  )
+else
+  ActiveRecord::Base.establish_connection(
+    'postgres://hjfohnpcmkyinw:3fa8c5ca1d5d9640b840644ea05841f9088551bdf8a43a8e0f811cf09e68a3f0@ec2-23-21-96-70.compute-1.amazonaws.com:5432/dfak5idb6r86qh'
+  )
+end
