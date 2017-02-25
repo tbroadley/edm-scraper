@@ -4,6 +4,7 @@ require 'capybara'
 require 'capybara/dsl'
 require 'capybara/poltergeist'
 
+require_relative '../environment'
 require_relative '../lib/models/show'
 require_relative '../lib/parse_date_string'
 
