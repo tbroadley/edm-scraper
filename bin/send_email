@@ -9,7 +9,7 @@ require_relative '../lib/email_builders'
 
 unless Show.unseen.empty?
   message = Mail.new do
-    from    'edm-scraper@tbroadley.com'
+    from    ENV['DATABASE_ENV'] == 'production' ? 'edm-scraper@tbroadley.com' : 'edm-scraper-dev@tbroadley.com'
     to      'buriedunderbooks@hotmail.com'
     subject email_subject
 
