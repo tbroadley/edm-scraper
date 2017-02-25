@@ -1,5 +1,7 @@
 require 'active_record'
 require 'pg'
+require 'dotenv'
+Dotenv.load
 
 # recursively requires all files in ./lib and down that end in .rb
 Dir.glob('./lib/*').each do |folder|
