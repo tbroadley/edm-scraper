@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+
+require_relative '../db/migrations/001_create_shows_table'
