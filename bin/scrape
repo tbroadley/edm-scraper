@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+
+require 'capybara'
+require 'capybara/dsl'
+require 'capybara/poltergeist'
+
+require_relative '../lib/models/show'
+
+include Capybara::DSL
+Capybara.default_driver = :poltergeist
+Capybara.default_max_wait_time = 0.1
+
+def parse_date_string(date_string)
+  date_string = date_string[0..-3]
+  _, month_name, day = /(.*), (.*) (\d*)/.match(date_string).captures
+  month = Date::MONTHNAMES.index(month_name)
+  year = DateTime.now.strftime("%Y").to_i
+  date = DateTime.new(year, month, day.to_i)
+  if date < DateTime.now
+    date.next_year
+  end
+  date
+end
+
+visit('http://www.edmcanada.com/toronto/')
+
+all('[data-block-type="2"]').each do |element|
+  begin
+    link = element.find('a')
+    url = link[:href]
+    date_string, name, venue = /(.*) - (.*) @ (.*)/.match(link.text).captures
+
+    start_date_string, end_date_string = date_string.split(' - ')
+    start_date = parse_date_string(start_date_string)
+    end_date = parse_date_string(end_date_string || start_date_string)
+    Show.create(name: name, venue: venue, start_date: start_date, end_date: end_date, url: url)
+  rescue Capybara::ElementNotFound
+  end
+end
