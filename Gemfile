@@ -7,7 +7,6 @@ gem "poltergeist"
 gem 'mail'
 gem 'postmark'
 gem 'dotenv-rails'
-gem 'erb'
 
 gem "minitest"
 gem "mocha"
