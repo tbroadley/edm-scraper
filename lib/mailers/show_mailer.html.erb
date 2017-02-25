@@ -1,0 +1,24 @@
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Venue</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% shows.each do |show| %>
+      <tr>
+        <td><%= show.name.truncate %></td>
+        <td><%= show.venue %></td>
+        <td>
+          <%= format_date(show.start_date) %>
+          <%= show.start_date == show.end_date ? "" : " &ndash; #{format_date(show.end_date)}" %>
+        </td>
+        <td>
+          <a href="<%= show.url %>">Tickets</a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

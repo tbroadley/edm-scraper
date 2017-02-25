@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+require 'mail'
+require 'postmark'
+
+require_relative '../environment'
+require_relative '../lib/models/show'
+require_relative '../lib/email_builders'
+
+unless Show.unseen.empty?
+  message = Mail.new do
+    from    'edm-scraper@tbroadley.com'
+    to      'buriedunderbooks@hotmail.com'
+    subject email_subject
+
+    html_part do
+      content_type 'text/html; charset=UTF-8'
+      body         email_body
+    end
+
+    delivery_method Mail::Postmark, api_token: ENV['POSTMARK_API_TOKEN']
+  end
+
+  message.deliver
+end
