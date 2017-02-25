@@ -5,22 +5,11 @@ require 'capybara/dsl'
 require 'capybara/poltergeist'
 
 require_relative '../lib/models/show'
+require_relative '../lib/parse_date_string'
 
 include Capybara::DSL
 Capybara.default_driver = :poltergeist
 Capybara.default_max_wait_time = 0.1
-
-def parse_date_string(date_string)
-  date_string = date_string[0..-3]
-  _, month_name, day = /(.*), (.*) (\d*)/.match(date_string).captures
-  month = Date::MONTHNAMES.index(month_name)
-  year = DateTime.now.strftime("%Y").to_i
-  date = DateTime.new(year, month, day.to_i)
-  if date < DateTime.now
-    date.next_year
-  end
-  date
-end
 
 visit('http://www.edmcanada.com/toronto/')
 
