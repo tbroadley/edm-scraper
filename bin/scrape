@@ -22,7 +22,12 @@ all('[data-block-type="2"]').each do |element|
     start_date_string, end_date_string = date_string.split(' - ')
     start_date = parse_date_string(start_date_string)
     end_date = parse_date_string(end_date_string || start_date_string)
-    Show.create(name: name, venue: venue, start_date: start_date, end_date: end_date, url: url)
+
+    show = Show.new(name: name, venue: venue, start_date: start_date, end_date: end_date, url: url)
+    show.save!
   rescue Capybara::ElementNotFound
+    puts "Capybara::ElementNotFound - couldn't find an `a` inside `element` - `element.text` = \'#{element.text}\'"
+  rescue ActiveRecord::RecordInvalid
+    puts "ActiveRecord::RecordInvalid - `show.to_json` = \'#{show.to_json}\' - `show.errors` = \'#{show.errors.to_json}\'"
   end
 end
