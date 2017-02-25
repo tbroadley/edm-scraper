@@ -22,4 +22,6 @@ unless Show.unseen.empty?
   end
 
   message.deliver
+
+  Show.unseen.update_all(new: false)
 end
