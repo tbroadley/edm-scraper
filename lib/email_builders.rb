@@ -33,3 +33,13 @@ end
 def format_date(date)
   date.strftime("%A, %B %-d")
 end
+
+def google_calendar_event_link(show)
+  date_format_string = '%Y%m%d'
+  "https://calendar.google.com/calendar/render" \
+    "?action=TEMPLATE" \
+    "&text=#{show.name}" \
+    "&dates=#{show.start_date.strftime(date_format_string)}/#{show.end_date.strftime(date_format_string)}" \
+    "&location=#{show.venue}" \
+    "&details=#{show.url}".gsub(" ", "+")
+end
