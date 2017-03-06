@@ -16,9 +16,10 @@ visit('http://www.edmcanada.com/toronto/')
 
 all('[data-block-type="2"]').each do |element|
   begin
-    link = element.find('a')
-    url = link[:href]
-    date_string, name, venue = /(.*) - (.*) @ (.*)/.match(link.text).captures
+    paragraph = element.find('p')
+    link = paragraph.first('a')
+    url = link ? link[:href] : nil
+    date_string, name, venue = /(.*) - (.*) @ (.*)/.match(paragraph.text).captures
 
     start_date_string, end_date_string = date_string.split(' - ')
     start_date = parse_date_string(start_date_string)

@@ -16,7 +16,9 @@
           <%= show.start_date == show.end_date ? "" : " &ndash; #{format_date(show.end_date)}" %>
         </td>
         <td>
-          <a href="<%= show.url %>">Tickets</a>
+          <% if show.url %>
+            <a href="<%= show.url %>">Tickets</a>
+          <% end %>
         </td>
         <td>
           <a href="<%= google_calendar_event_link(show) %>">Add to calendar</a>

@@ -100,7 +100,6 @@ class TestEmailBuilders < Minitest::Test
         venue: "Woodbine Park",
         start_date: DateTime.new(2015, 07, 15),
         end_date: DateTime.new(2015, 07, 18),
-        url: "http://tickytickies.ca/testival",
       ),
     ])
 
