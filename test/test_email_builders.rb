@@ -99,13 +99,24 @@ class TestEmailBuilders < Minitest::Test
     assert_equal "Saturday, February 25", format_date(DateTime.new(2017, 02, 25))
   end
 
-  def test_google_calendar_event_link_returns_correct_link
-    expected_url = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Test+show+1&dates=20150530/20150530&location=Your+mom's+house&details=https://buydemtickets.com/test-show-1"
+  def test_google_calendar_event_link_returns_correct_link_if_dates_are_equal
+    expected_url = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Test+show+1&dates=20150530T220000/20150531T000000&location=Your+mom's+house&details=https://buydemtickets.com/test-show-1"
     assert_equal expected_url, google_calendar_event_link(Show.new(
         name: "Test show 1",
         venue: "Your mom's house",
         start_date: DateTime.new(2015, 05, 30),
         end_date: DateTime.new(2015, 05, 30),
+        url: "https://buydemtickets.com/test-show-1",
+    ))
+  end
+
+  def test_google_calendar_event_link_returns_correct_link_if_dates_are_not_equal
+    expected_url = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Test+show+1&dates=20150530/20150531&location=Your+mom's+house&details=https://buydemtickets.com/test-show-1"
+    assert_equal expected_url, google_calendar_event_link(Show.new(
+        name: "Test show 1",
+        venue: "Your mom's house",
+        start_date: DateTime.new(2015, 05, 30),
+        end_date: DateTime.new(2015, 05, 31),
         url: "https://buydemtickets.com/test-show-1",
     ))
   end
