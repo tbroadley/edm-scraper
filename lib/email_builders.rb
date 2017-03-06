@@ -19,6 +19,8 @@ def email_subject
     "#{first} and #{second} are"
   when 3
     "#{first}, #{second}, and #{third} are"
+  when 4
+    "#{first}, #{second}, #{third}, and 1 other are"
   else
     "#{first}, #{second}, #{third}, and #{Show.unseen.count - 3} others are"
   end + " coming to Toronto!"

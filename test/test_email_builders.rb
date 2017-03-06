@@ -45,7 +45,26 @@ class TestEmailBuilders < Minitest::Test
     assert_equal "Your favourite artist, this random guy, and someone else are coming to Toronto!", email_subject
   end
 
-  def test_email_subject_returns_correct_string_with_more_than_three_shows
+  def test_email_subject_returns_correct_string_with_four_shows
+    stub_unseen_shows([
+      Show.new(
+        name: "Your favourite artist",
+      ),
+      Show.new(
+        name: "this random guy",
+      ),
+      Show.new(
+        name: "someone else",
+      ),
+      Show.new(
+        name: "a fourth person"
+      )
+    ])
+
+    assert_equal "Your favourite artist, this random guy, someone else, and 1 other are coming to Toronto!", email_subject
+  end
+
+  def test_email_subject_returns_correct_string_with_more_than_four_shows
     stub_unseen_shows([
       Show.new(
         name: "Your favourite artist",
