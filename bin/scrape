@@ -31,5 +31,7 @@ all('[data-block-type="2"]').each do |element|
     puts "Capybara::ElementNotFound - couldn't find an `a` inside `element` - `element.text` = \'#{element.text}\'"
   rescue ActiveRecord::RecordInvalid
     puts "ActiveRecord::RecordInvalid - `show.to_json` = \'#{show.to_json}\' - `show.errors` = \'#{show.errors.to_json}\'"
+  rescue NoMethodError
+    puts "NoMethodError"
   end
 end
