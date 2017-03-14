@@ -4,10 +4,8 @@ require 'dotenv'
 Dotenv.load
 
 # recursively requires all files in ./lib and down that end in .rb
-Dir.glob('./lib/*').each do |folder|
-  Dir.glob(folder + '/*.rb').each do |file|
-    require file
-  end
+Dir.glob('./lib/**/*.rb').each do |file|
+  require file
 end
 
 # tells AR what db file to use
