@@ -24,4 +24,10 @@ class TestParseDateString < Minitest::Test
   def test_parsing_date_in_next_year
     assert_equal DateTime.new(2006, 1, 10), parse_date_string("Monday, January 10th")
   end
+
+  def test_parse_date_string_2_parses_dates_correctly
+    (DateTime.new(2005, 1, 1)..DateTime.new(2005, 12, 31)).each do |datetime|
+      assert_equal datetime, parse_date_string_2(datetime.strftime("%A, %B %-d, %Y"))
+    end
+  end
 end

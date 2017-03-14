@@ -1,0 +1,44 @@
+#!/usr/bin/env ruby
+
+require 'capybara'
+require 'capybara/dsl'
+require 'capybara/poltergeist'
+
+require_relative '../environment'
+require_relative '../lib/models/show'
+require_relative '../lib/parse_date_string'
+
+
+include Capybara::DSL
+Capybara.default_driver = :poltergeist
+Capybara.default_max_wait_time = 0.1
+
+visit('http://concertsto.com/')
+
+current_date = nil
+
+all('#c tr').each do |element|
+  begin
+    if element[:class] == 'date'
+      current_date = parse_date_string_2(element.text)
+    elsif element[:class].split(' ').include?('c')
+      show_and_venue = element.find('.show')
+      venue = show_and_venue.find('.venue').text
+      name = show_and_venue.text.sub(" #{venue}", '')
+
+      ticket_link = element.find('.tickets > p:first-child > a')
+      url = ticket_link[:href]
+
+      show = Show.new(
+        name: name,
+        venue: venue,
+        start_date: current_date,
+        end_date: current_date,
+        url: url,
+        filter: true,
+      )
+      show.save!
+    end
+  rescue
+  end
+end
