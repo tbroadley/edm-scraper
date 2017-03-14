@@ -23,5 +23,7 @@ unless Show.unseen.empty?
 
   message.deliver
 
-  Show.unseen.update_all(new: false)
+  Show.unseen.each do |show|
+    show.update!(new: false)
+  end
 end
