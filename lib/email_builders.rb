@@ -40,7 +40,7 @@ def google_calendar_event_link(show)
   date_format_string = '%Y%m%d'
   dates = if show.start_date == show.end_date
     "#{show.start_date.strftime(date_format_string)}T220000" \
-    "/#{(show.end_date + 1).strftime(date_format_string)}T000000"
+    "/#{(show.end_date + 1.day).strftime(date_format_string)}T000000"
   else
     "#{show.start_date.strftime(date_format_string)}" \
     "/#{show.end_date.strftime(date_format_string)}"
