@@ -81,4 +81,5 @@ FILTER_ARTISTS_LIST = [
   "Rusko",
   "SOIL&\"PIMP\"SESSIONS",
   "This Town Needs Guns",
+  "Bag Raiders",
 ]
