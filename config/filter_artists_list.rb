@@ -1,4 +1,7 @@
 FILTER_ARTISTS_LIST = [
+  "Habstrakt",
+  "TroyBoi",
+  "Weezer",
   "Maxo",
   "SWANES",
   "Lully",
