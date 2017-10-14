@@ -3,7 +3,7 @@ def parse_date_string(date_string)
   month = Date::MONTHNAMES.index(month_name)
   year = DateTime.now.strftime("%Y").to_i
   date = DateTime.new(year, month, day.to_i)
-  date < DateTime.now ? date.next_year : date
+  date < (DateTime.now - 1.week) ? date.next_year : date
 end
 
 def parse_date_string_2(date_string)
