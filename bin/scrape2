@@ -25,6 +25,9 @@ all('#c tr').each do |element|
       show_and_venue = element.find('.show')
       venue = show_and_venue.find('.venue').text
       name = show_and_venue.text.sub(" #{venue}", '')
+      if show_and_venue.find('.new')
+        name = name.sub(/New$/, '')
+      end
 
       ticket_link = element.find('.tickets > p:first-child > a')
       url = ticket_link[:href]
