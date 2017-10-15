@@ -85,4 +85,11 @@ FILTER_ARTISTS_LIST = [
   "SOIL&\"PIMP\"SESSIONS",
   "This Town Needs Guns",
   "Bag Raiders",
+  "Superfruit",
+  "Grant",
+  "MMG",
+  "Mitch and Mike Gordon",
+  "Mitch & Mike Gordon",
+  "Oliver",
+  "MisterWives",
 ]
