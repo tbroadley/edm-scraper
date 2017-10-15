@@ -25,8 +25,11 @@ all('#c tr').each do |element|
       show_and_venue = element.find('.show')
       venue = show_and_venue.find('.venue').text
       name = show_and_venue.text.sub(" #{venue}", '')
-      if show_and_venue.find('.new')
-        name = name.sub(/New$/, '')
+
+      begin
+        show_and_venue.find('.new')
+        name = name.sub(/[Nn]ew$/, '')
+      rescue
       end
 
       ticket_link = element.find('.tickets > p:first-child > a')
