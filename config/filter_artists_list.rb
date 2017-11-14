@@ -92,4 +92,5 @@ FILTER_ARTISTS_LIST = [
   "Mitch & Mike Gordon",
   "Oliver",
   "MisterWives",
+  "Virtual Self",
 ]
