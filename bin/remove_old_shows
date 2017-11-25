@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require_relative '../environment'
+require_relative '../lib/models/show'
+
+Show.where('end_date < ?', Date.today).delete_all
