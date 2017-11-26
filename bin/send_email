@@ -7,6 +7,10 @@ require_relative '../lib/models/show'
 require_relative '../lib/email_builders'
 
 unless Show.unseen.empty?
+  PostageApp.configure do |config|
+    config.api_key = ENV['POSTAGEAPP_API_KEY']
+  end
+
   request = PostageApp::Request.new(
     :send_message,
     {

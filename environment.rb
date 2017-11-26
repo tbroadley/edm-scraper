@@ -1,7 +1,6 @@
 require 'active_record'
 require 'pg'
 require 'dotenv'
-require 'postageapp'
 
 Dotenv.load
 
@@ -20,9 +19,4 @@ if ENV['DATABASE_ENV'] == 'development'
   )
 else
   ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
-end
-
-# configure PostageApp
-PostageApp.configure do |config|
-  config.api_key = ENV['POSTAGEAPP_API_KEY']
 end

@@ -4,6 +4,10 @@ require 'postageapp'
 
 require_relative '../environment'
 
+PostageApp.configure do |config|
+  config.api_key = ARGV[0]
+end
+
 request = PostageApp::Request.new(
   :send_message,
   {
