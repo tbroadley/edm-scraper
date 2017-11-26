@@ -8,7 +8,6 @@ require_relative '../environment'
 require_relative '../lib/models/show'
 require_relative '../lib/parse_date_string'
 
-
 include Capybara::DSL
 Capybara.default_driver = :poltergeist
 Capybara.default_max_wait_time = 0.1
