@@ -1,27 +1,27 @@
 #!/usr/bin/env ruby
 
-require 'mail'
-require 'postmark'
+require 'postageapp'
 
 require_relative '../environment'
 require_relative '../lib/models/show'
 require_relative '../lib/email_builders'
 
 unless Show.unseen.empty?
-  message = Mail.new do
-    from    ENV['DATABASE_ENV'] == 'production' ? 'edm-scraper@tbroadley.com' : 'edm-scraper-dev@tbroadley.com'
-    to      'buriedunderbooks@hotmail.com'
-    subject email_subject
+  request = PostageApp::Request.new(
+    :send_message,
+    {
+      headers: {
+        from: ENV['DATABASE_ENV'] == 'production' ? 'edm-scraper@tbroadley.com' : 'edm-scraper-dev@tbroadley.com',
+        subject: email_subject,
+      },
+      recipients: 'buriedunderbooks@hotmail.com',
+      content: {
+        'text/html': email_body,
+      },
+    }
+  )
 
-    html_part do
-      content_type 'text/html; charset=UTF-8'
-      body         email_body
-    end
-
-    delivery_method Mail::Postmark, api_token: ENV['POSTMARK_API_TOKEN']
-  end
-
-  message.deliver
+  request.send
 
   Show.unseen.each do |show|
     show.update!(new: false)

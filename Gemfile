@@ -4,8 +4,7 @@ gem "activerecord"
 gem "pg"
 gem "capybara"
 gem "poltergeist"
-gem 'mail'
-gem 'postmark'
+gem 'postageapp'
 gem 'dotenv-rails'
 
 gem "minitest"
