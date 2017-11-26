@@ -11,7 +11,7 @@ require_relative '../lib/parse_date_string'
 include Capybara::DSL
 
 Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, phantomjs_options: [
+  Capybara::Poltergeist::Driver.new(app, js_errors: false, phantomjs_options: [
     '--ssl-protocol=tlsv1.2'
   ])
 end

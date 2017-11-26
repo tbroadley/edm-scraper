@@ -9,6 +9,11 @@ require_relative '../lib/models/show'
 require_relative '../lib/parse_date_string'
 
 include Capybara::DSL
+
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, js_errors: false)
+end
+
 Capybara.default_driver = :poltergeist
 Capybara.default_max_wait_time = 0.1
 
