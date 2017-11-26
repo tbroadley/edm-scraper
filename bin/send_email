@@ -3,8 +3,6 @@
 require 'postageapp'
 
 require_relative '../environment'
-require_relative '../lib/models/show'
-require_relative '../lib/email_builders'
 
 unless Show.unseen.empty?
   PostageApp.configure do |config|
