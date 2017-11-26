@@ -19,8 +19,8 @@ visit('http://concertsto.com/')
 
 current_date = nil
 
-all('#c tr').each do |element|
-  begin
+send_email_if_rescue('scrape2') do
+  all('#c tr').each do |element|
     if element[:class] == 'date'
       current_date = parse_date_string_2(element.text)
     elsif element[:class].split(' ').include?('c')
@@ -28,10 +28,8 @@ all('#c tr').each do |element|
       venue = show_and_venue.find('.venue').text
       name = show_and_venue.text.sub(" #{venue}", '')
 
-      begin
-        show_and_venue.find('.new')
+      if show_and_venue.first('.new')
         name = name.sub(/[Nn]ew$/, '')
-      rescue
       end
 
       ticket_link = element.find('.tickets > p:first-child > a')
@@ -45,8 +43,7 @@ all('#c tr').each do |element|
         url: url,
         filter: true,
       )
-      show.save!
+      show.save
     end
-  rescue
   end
 end
