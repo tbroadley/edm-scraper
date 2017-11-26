@@ -15,18 +15,19 @@ end
 Capybara.default_driver = :poltergeist
 Capybara.default_max_wait_time = 0.1
 
-send_email_if_rescue('scrape') do
+# send_email_if_rescue('scrape') do
   visit('http://www.edmcanada.com/toronto/')
 
-  all('[data-block-type="2"]').each do |element|
-    paragraph = element.first('p')
-    next if paragraph.nil?
+  all('.main-content [data-block-type="2"] p:first-child').each do |element|
+    next if element.text.start_with?('Support EDM Canada')
 
-    link = paragraph.first('a')
+    link = element.first('a')
     url = link ? link[:href] : nil
 
-    match = /(.*) - (.*) @ (.*)/.match(paragraph.text)
-    next if match.nil?
+    match = /(.*) - (.*) @ (.*)/.match(element.text)
+    if match.nil?
+      raise "Element with text '#{element.text}' does not match expected format (name - date @ venue)"
+    end
 
     date_string, name, venue = match.captures
 
@@ -37,4 +38,4 @@ send_email_if_rescue('scrape') do
     show = Show.new(name: name, venue: venue, start_date: start_date, end_date: end_date, url: url, filter: false)
     show.save
   end
-end
+# end
