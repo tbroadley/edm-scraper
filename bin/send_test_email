@@ -5,7 +5,7 @@ require 'postageapp'
 require_relative '../environment'
 
 PostageApp.configure do |config|
-  config.api_key = ARGV[0]
+  config.api_key = ENV['POSTAGEAPP_API_KEY'] || ARGV[0]
 end
 
 request = PostageApp::Request.new(
