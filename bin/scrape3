@@ -25,24 +25,24 @@ def go(city)
   visit("https://www.ticketscene.ca/city/#{city}/")
 
   all('.row-event').each do |element|
-    begin
-      name = text_by_itemprop(element, 'name')
+    name = text_by_itemprop(element, 'name')
 
-      venue_and_city = text_by_itemprop(element, 'location')
-      city = text_by_itemprop(element, 'addressLocality')
-      province = text_by_itemprop(element, 'addressRegion')
-      venue = venue_and_city.sub(" #{city}, #{province}", '')
+    venue_and_city = text_by_itemprop(element, 'location')
+    city = text_by_itemprop(element, 'addressLocality')
+    province = text_by_itemprop(element, 'addressRegion')
+    venue = venue_and_city.sub(" #{city}, #{province}", '')
 
-      date = Date.strptime(element.find('[itemprop="startDate"]', visible: :any)[:content], "%Y-%m-%d")
+    date = Date.strptime(element.find('[itemprop="startDate"]', visible: :any)[:content], "%Y-%m-%d")
 
-      url = "https://www.ticketscene.ca#{element.find('.btn-buy')[:href]}"
+    buy_button = element.first('.btn-buy')
+    url = buy_button ? "https://www.ticketscene.ca#{buy_button[:href]}" : nil
 
-      show = Show.new(name: name, venue: venue, start_date: date, end_date: date, url: url, filter: true)
-      show.save!
-    rescue
-    end
+    show = Show.new(name: name, venue: venue, start_date: date, end_date: date, url: url, filter: true)
+    show.save
   end
 end
 
-go('kitchener')
-go('waterloo')
+send_email_if_rescue('scrape3') do
+  go('kitchener')
+  go('waterloo')
+end
