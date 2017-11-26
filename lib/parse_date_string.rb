@@ -1,6 +1,9 @@
 def parse_date_string(date_string)
   _, month_name, day = /(.*), (.*) (\d*)/.match(date_string).captures
-  month = Date::MONTHNAMES.index(month_name)
+  cleaned_month_name = month_name.gsub(/[^A-Za-z]/, '').downcase
+  month = Date::MONTHNAMES[1..-1]
+    .map(&:downcase)
+    .find_index { |name| name.start_with?(cleaned_month_name) } + 1
   year = DateTime.now.strftime("%Y").to_i
   date = DateTime.new(year, month, day.to_i)
   date < (DateTime.now - 1.week) ? date.next_year : date

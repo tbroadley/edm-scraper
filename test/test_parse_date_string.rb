@@ -21,6 +21,14 @@ class TestParseDateString < Minitest::Test
     assert_equal DateTime.new(2005, 7, 31), parse_date_string("Sun, July 31st")
   end
 
+  def test_parsing_date_with_month_abbreviation
+    assert_equal DateTime.new(2005, 12, 25), parse_date_string("Sun, Dec 25th")
+  end
+
+  def test_parsing_date_with_month_abbreviation_and_period
+    assert_equal DateTime.new(2005, 12, 25), parse_date_string("Sun, Dec. 25th")
+  end
+
   def test_parsing_date_in_next_year
     assert_equal DateTime.new(2006, 1, 10), parse_date_string("Monday, January 10th")
   end
