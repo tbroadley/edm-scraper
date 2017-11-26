@@ -5,8 +5,6 @@ require 'capybara/dsl'
 require 'capybara/poltergeist'
 
 require_relative '../environment'
-require_relative '../lib/models/show'
-require_relative '../lib/parse_date_string'
 
 include Capybara::DSL
 
@@ -17,26 +15,26 @@ end
 Capybara.default_driver = :poltergeist
 Capybara.default_max_wait_time = 0.1
 
-visit('http://www.edmcanada.com/toronto/')
+send_email_if_rescue('scrape') do
+  visit('http://www.edmcanada.com/toronto/')
 
-all('[data-block-type="2"]').each do |element|
-  begin
-    paragraph = element.find('p')
+  all('[data-block-type="2"]').each do |element|
+    paragraph = element.first('p')
+    next if paragraph.nil?
+
     link = paragraph.first('a')
     url = link ? link[:href] : nil
-    date_string, name, venue = /(.*) - (.*) @ (.*)/.match(paragraph.text).captures
+
+    match = /(.*) - (.*) @ (.*)/.match(paragraph.text)
+    next if match.nil?
+
+    date_string, name, venue = match.captures
 
     start_date_string, end_date_string = date_string.split(' - ')
     start_date = parse_date_string(start_date_string)
     end_date = parse_date_string(end_date_string || start_date_string)
 
     show = Show.new(name: name, venue: venue, start_date: start_date, end_date: end_date, url: url, filter: false)
-    show.save!
-  rescue Capybara::ElementNotFound
-    puts "Capybara::ElementNotFound - couldn't find an `a` inside `element` - `element.text` = \'#{element.text}\'"
-  rescue ActiveRecord::RecordInvalid
-    puts "ActiveRecord::RecordInvalid - `show.to_json` = \'#{show.to_json}\' - `show.errors` = \'#{show.errors.to_json}\'"
-  rescue NoMethodError
-    puts "NoMethodError"
+    show.save
   end
 end
