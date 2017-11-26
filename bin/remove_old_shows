@@ -2,4 +2,6 @@
 
 require_relative '../environment'
 
-Show.where('end_date < ?', Date.today).delete_all
+send_email_if_rescue('remove_old_shows') do
+  Show.where('end_date < ?', Date.today).delete_all
+end
