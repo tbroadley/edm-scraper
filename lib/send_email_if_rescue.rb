@@ -17,7 +17,7 @@ def send_email_if_rescue(script_name, &block)
         },
         recipients: 'buriedunderbooks@hotmail.com',
         content: {
-          'text/plain': exception.backtrace.join('\n'),
+          'text/plain': "#{exception.inspect}\n\n#{exception.backtrace.join('\n')}",
         },
       }
     )
