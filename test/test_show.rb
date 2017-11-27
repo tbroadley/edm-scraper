@@ -5,6 +5,28 @@ require 'mocha/mini_test'
 require_relative '../lib/models/show'
 
 class TestShow < Minitest::Test
+  def test_show_without_name_is_invalid
+    date = DateTime.new(2005, 1, 1)
+    show = Show.new(venue: 'Test', start_date: date, end_date: date)
+    refute show.valid?
+  end
+
+  def test_show_without_venue_is_invalid
+    date = DateTime.new(2005, 1, 1)
+    show = Show.new(name: 'Test', start_date: date, end_date: date)
+    refute show.valid?
+  end
+
+  def test_show_without_name_is_invalid
+    show = Show.new(name: 'Test', venue: 'Test', start_date: DateTime.new(2005, 1, 1))
+    refute show.valid?
+  end
+
+  def test_show_without_name_is_invalid
+    show = Show.new(name: 'Test', venue: 'Test', end_date: DateTime.new(2005, 1, 1))
+    refute show.valid?
+  end
+
   def test_show_to_s_if_start_date_and_end_date_are_same
     name = 'Test show'
     venue = 'Club 1'
