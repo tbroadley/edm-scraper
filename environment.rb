@@ -1,6 +1,7 @@
 require 'active_record'
-require 'pg'
 require 'dotenv'
+require 'nulldb/core'
+require 'pg'
 
 Dotenv.load
 
@@ -17,6 +18,13 @@ if ENV['DATABASE_ENV'] == 'development'
     username: 'user',
     database: 'edm-scraper',
   )
+elsif ENV['DATABASE_ENV'] == 'test'
+  NullDB.configure do |ndb|
+    def ndb.project_root
+      File.dirname(__FILE__)
+    end
+  end
+  ActiveRecord::Base.establish_connection(adapter: :nulldb, schema: 'db/schema.rb')
 else
   ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
 end

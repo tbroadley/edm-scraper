@@ -11,4 +11,5 @@ gem 'minitest', '5.10.3'
 gem 'mocha', '1.3.0'
 gem 'guard', '2.14.1'
 gem 'guard-minitest', '2.4.6'
+gem 'activerecord-nulldb-adapter', '0.3.7'
 gem 'wdm', '0.1.1' if Gem.win_platform?
