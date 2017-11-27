@@ -7,7 +7,7 @@ require_relative '../../lib/models/show'
 class TestShow < Minitest::Test
   def test_show_is_valid
     date = DateTime.new(2005, 1, 1)
-    show = Show.new(name: 'Test', venue: 'Test', start_date: date, end_date: date)
+    show = Show.new(name: 'Test', venue: 'Test', start_date: date, end_date: date, new: true, filter: false)
     assert show.valid?
   end
 
