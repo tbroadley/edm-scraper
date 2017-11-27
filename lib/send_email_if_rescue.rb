@@ -4,6 +4,9 @@ def send_email_if_rescue(script_name, &block)
   begin
     block.call
   rescue Exception => exception
+    puts exception.inspect
+    puts exception.backtrace
+
     PostageApp.configure do |config|
       config.api_key = ENV['POSTAGEAPP_API_KEY']
     end
