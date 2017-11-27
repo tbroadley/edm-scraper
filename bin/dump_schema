@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require_relative '../environment'
+
+require 'active_record/schema_dumper'
+
+File.open('./db/schema.rb', 'w') do |file|
+  ActiveRecord::SchemaDumper.dump(ActiveRecord::Base.connection, file)
+end
