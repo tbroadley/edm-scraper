@@ -2,9 +2,15 @@ require 'date'
 require 'minitest/autorun'
 require 'mocha/mini_test'
 
-require_relative '../lib/models/show'
+require_relative '../../lib/models/show'
 
 class TestShow < Minitest::Test
+  def test_show_is_valid
+    date = DateTime.new(2005, 1, 1)
+    show = Show.new(name: 'Test', venue: 'Test', start_date: date, end_date: date)
+    assert show.valid?
+  end
+
   def test_show_without_name_is_invalid
     date = DateTime.new(2005, 1, 1)
     show = Show.new(venue: 'Test', start_date: date, end_date: date)
@@ -22,8 +28,9 @@ class TestShow < Minitest::Test
     refute show.valid?
   end
 
-  def test_show_without_name_is_invalid
-    show = Show.new(name: 'Test', venue: 'Test', end_date: DateTime.new(2005, 1, 1))
+  def test_show_with_non_boolean_new_is_invalid
+    date = DateTime.new(2005, 1, 1)
+    show = Show.new(name: 'Test', venue: 'Test', start_date: date, end_date: date, new: 'not a boolean')
     refute show.valid?
   end
 
