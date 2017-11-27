@@ -15,7 +15,7 @@ end
 Capybara.default_driver = :poltergeist
 Capybara.default_max_wait_time = 0.1
 
-# send_email_if_rescue('scrape') do
+send_email_if_rescue('scrape') do
   visit('http://www.edmcanada.com/toronto/')
 
   all('.main-content [data-block-type="2"] p:first-child').each do |element|
@@ -38,4 +38,4 @@ Capybara.default_max_wait_time = 0.1
     show = Show.new(name: name, venue: venue, start_date: start_date, end_date: end_date, url: url, filter: false)
     show.save
   end
-# end
+end
