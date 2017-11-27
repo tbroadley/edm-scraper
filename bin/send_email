@@ -4,7 +4,9 @@ require 'postageapp'
 
 require_relative '../environment'
 
-unless Show.unseen.empty?
+if Show.unseen.empty?
+  puts "No unseen shows"
+else
   PostageApp.configure do |config|
     config.api_key = ENV['POSTAGEAPP_API_KEY']
   end
@@ -23,8 +25,10 @@ unless Show.unseen.empty?
     }
   )
 
+  puts "Sending email to buriedunderbooks@hotmail.com"
   request.send
 
+  puts "Marking #{Show.unseen.size} show#{Show.unseen.size == 1 ? '' : 's'} as seen"
   Show.unseen.each do |show|
     show.update!(new: false)
   end
