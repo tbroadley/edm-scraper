@@ -43,7 +43,7 @@ send_email_if_rescue('scrape2') do
         url: url,
         filter: true,
       )
-      show.save
+      puts show.save ? "Added new show: '#{show}'" : "Show '#{show}' already exists in database"
     end
   end
 end

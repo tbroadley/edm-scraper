@@ -38,7 +38,7 @@ def go(city)
     url = buy_button ? "https://www.ticketscene.ca#{buy_button[:href]}" : nil
 
     show = Show.new(name: name, venue: venue, start_date: date, end_date: date, url: url, filter: true)
-    show.save
+    puts show.save ? "Added new show: '#{show}'" : "Show '#{show}' already exists in database"
   end
 end
 
