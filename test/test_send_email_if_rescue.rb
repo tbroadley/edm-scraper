@@ -3,7 +3,7 @@ require 'mocha/mini_test'
 
 require_relative '../lib/send_email_if_rescue'
 
-class TestParseDateString < Minitest::Test
+class TestSendEmailIfRescue < Minitest::Test
   def test_send_email_if_rescue_sends_email_when_exception_is_raised
     script_name = 'test'
 
