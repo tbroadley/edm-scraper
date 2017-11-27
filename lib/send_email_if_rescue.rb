@@ -4,7 +4,7 @@ def send_email_if_rescue(script_name, &block)
   begin
     block.call
   rescue Exception => exception
-    unless File.basename($0) == 'rake_test_loader.rb'
+    unless ENV['DATABASE_ENV'] == 'test'
       puts exception.inspect
       puts exception.backtrace
     end
