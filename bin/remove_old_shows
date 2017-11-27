@@ -3,5 +3,7 @@
 require_relative '../environment'
 
 send_email_if_rescue('remove_old_shows') do
-  Show.where('end_date < ?', Date.today).delete_all
+  old_shows = Show.where('end_date < ?', Date.today)
+  puts "Deleting #{old_shows.size} show#{old_shows.size == 1 ? '' : 's'} with end dates before #{Date.today}"
+  old_shows.delete_all
 end
