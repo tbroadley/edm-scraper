@@ -93,4 +93,5 @@ FILTER_ARTISTS_LIST = [
   "Oliver",
   "MisterWives",
   "Virtual Self",
+  "Rikashay",
 ]
