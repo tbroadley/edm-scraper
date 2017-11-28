@@ -14,5 +14,18 @@ class TestParseDateString < Minitest::Test
 
   def test_filter_artist_returns_false_for_artist_included_in_a_word
     refute filter_artist?('Evergrey')
+    refute filter_artist?('Pentaweezer')
+  end
+
+  def test_filter_artist_works_if_show_contains_punctuation
+    assert filter_artist?('Weezer, Pixies & The Wombats')
+    assert filter_artist?('Weezer: The White Album Live')
+    assert filter_artist?('This is a Weezer show')
+    assert filter_artist?('A bad band (Weezer)')
+  end
+
+  def test_filter_artist_ignores_capitalization
+    assert filter_artist?('WEEZER')
+    assert filter_artist?('weezer')
   end
 end
