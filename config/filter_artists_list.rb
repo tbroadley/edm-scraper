@@ -94,4 +94,5 @@ FILTER_ARTISTS_LIST = [
   "MisterWives",
   "Virtual Self",
   "Rikashay",
+  "Big Wild",
 ]
