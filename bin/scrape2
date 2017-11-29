@@ -29,7 +29,7 @@ send_email_if_rescue('scrape2') do
       name = show_and_venue.text.sub(" #{venue}", '')
 
       if show_and_venue.first('.new')
-        name = name.sub(/[Nn]ew$/, '')
+        name = name.sub(/ [Nn]ew$/, '')
       end
 
       ticket_link = element.find('.tickets > p:first-child > a')
