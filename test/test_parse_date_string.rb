@@ -14,7 +14,7 @@ class TestParseDateString < Minitest::Test
   end
 
   def test_parsing_date_string_with_suffix
-    assert_equal Time.new(2005, 11, 2), parse_date_string('Friday, November 2nd')
+    assert_equal Time.new(2005, 10, 2), parse_date_string('Friday, October 2nd')
   end
 
   def test_parsing_date_with_weekday_abbreviation
@@ -30,7 +30,7 @@ class TestParseDateString < Minitest::Test
   end
 
   def test_parsing_date_in_next_year
-    assert_equal Time.new(2006, 1, 10), parse_date_string('Monday, January 10th')
+    assert_equal Time.new(2006, 3, 10), parse_date_string('Monday, March 10th')
   end
 
   def test_parsing_date_in_last_week
@@ -44,7 +44,7 @@ class TestParseDateString < Minitest::Test
   def test_parse_date_string_2_parses_dates_correctly
     (Date.new(2005, 1, 1)..Date.new(2005, 12, 31)).each do |date|
       assert_equal Time.new(date.year, date.month, date.day),
-        parse_date_string_2(date.strftime('%A, %B %-d, %Y'))
+                   parse_date_string_2(date.strftime('%A, %B %-d, %Y'))
     end
   end
 end
