@@ -43,19 +43,22 @@ def format_date(date)
   date.strftime('%A, %B %-d')
 end
 
-def google_calendar_event_link(show)
+def google_calendar_date_string(show)
   date_format_string = '%Y%m%d'
-  dates = if show.start_date == show.end_date
-            "#{show.start_date.strftime(date_format_string)}T220000" \
-            "/#{(show.end_date + 1.day).strftime(date_format_string)}T000000"
-          else
-            "#{show.start_date.strftime(date_format_string)}" \
-            "/#{show.end_date.strftime(date_format_string)}"
-          end
+  if show.start_date == show.end_date
+    "#{show.start_date.strftime(date_format_string)}T220000" \
+    "/#{(show.end_date + 1.day).strftime(date_format_string)}T000000"
+  else
+    "#{show.start_date.strftime(date_format_string)}" \
+    "/#{show.end_date.strftime(date_format_string)}"
+  end
+end
+
+def google_calendar_event_link(show)
   'https://calendar.google.com/calendar/render' \
     '?action=TEMPLATE' \
     "&text=#{show.name}" \
-    "&dates=#{dates}" \
+    "&dates=#{google_calendar_date_string(show)}" \
     "&location=#{show.venue}" \
     "&details=#{show.url}".tr(' ', '+')
 end
