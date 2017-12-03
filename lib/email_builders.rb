@@ -14,6 +14,7 @@ class String
   end
 end
 
+# rubocop:disable Metrics/MethodLength
 def email_subject
   first, second, third = Show.unseen.map(&:name).map(&:truncate)
 
@@ -30,6 +31,7 @@ def email_subject
     "#{first}, #{second}, #{third}, and #{Show.unseen.count - 3} others are"
   end + ' coming to Toronto!'
 end
+# rubocop:enable Metrics/MethodLength
 
 def email_body
   b = binding
