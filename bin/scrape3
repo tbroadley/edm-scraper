@@ -10,8 +10,8 @@ include Capybara::DSL
 
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, js_errors: false, phantomjs_options: [
-    '--ssl-protocol=tlsv1.2'
-  ])
+                                      '--ssl-protocol=tlsv1.2'
+                                    ])
 end
 
 Capybara.default_driver = :poltergeist
@@ -32,7 +32,7 @@ def go(city)
     province = text_by_itemprop(element, 'addressRegion')
     venue = venue_and_city.sub(" #{city}, #{province}", '')
 
-    date = Date.strptime(element.find('[itemprop="startDate"]', visible: :any)[:content], "%Y-%m-%d")
+    date = Date.strptime(element.find('[itemprop="startDate"]', visible: :any)[:content], '%Y-%m-%d')
 
     buy_button = element.first('.btn-buy')
     url = buy_button ? "https://www.ticketscene.ca#{buy_button[:href]}" : nil

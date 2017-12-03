@@ -28,9 +28,7 @@ send_email_if_rescue('scrape2') do
       venue = show_and_venue.find('.venue').text
       name = show_and_venue.text.sub(" #{venue}", '')
 
-      if show_and_venue.first('.new')
-        name = name.sub(/ [Nn]ew$/, '')
-      end
+      name = name.sub(/ [Nn]ew$/, '') if show_and_venue.first('.new')
 
       ticket_link = element.find('.tickets > p:first-child > a')
       url = ticket_link[:href]
@@ -41,7 +39,7 @@ send_email_if_rescue('scrape2') do
         start_date: current_date,
         end_date: current_date,
         url: url,
-        filter: true,
+        filter: true
       )
       puts show.save ? "Added new show: '#{show}'" : "Show '#{show}' already exists in database"
     end

@@ -1,7 +1,6 @@
 require_relative '../../environment'
 
 class CreateShowsTable < ActiveRecord::Migration
-
   def up
     create_table :shows do |t|
       t.string :name
@@ -16,7 +15,6 @@ class CreateShowsTable < ActiveRecord::Migration
   def down
     drop_table :shows
   end
-
 end
 
 CreateShowsTable.migrate(ARGV[0])

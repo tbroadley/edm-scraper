@@ -16,7 +16,7 @@ if ENV['DATABASE_ENV'] == 'development'
     adapter: 'postgresql',
     host: 'localhost',
     username: 'user',
-    database: 'edm-scraper',
+    database: 'edm-scraper'
   )
 elsif ENV['DATABASE_ENV'] == 'test'
   NullDB.configure do |ndb|

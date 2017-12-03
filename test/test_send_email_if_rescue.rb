@@ -7,7 +7,7 @@ class TestSendEmailIfRescue < Minitest::Test
   def test_send_email_if_rescue_sends_email_when_exception_is_raised
     script_name = 'test'
 
-    request_mock = mock()
+    request_mock = mock
     request_mock.expects(:send).once
 
     PostageApp::Request.expects(:new).once.with do |method, options|
@@ -20,7 +20,7 @@ class TestSendEmailIfRescue < Minitest::Test
   end
 
   def test_send_email_if_rescue_does_not_send_email_if_no_exception_raised
-    request_mock = mock()
+    request_mock = mock
     request_mock.expects(:send).never
 
     PostageApp::Request.expects(:new).never.returns(request_mock)

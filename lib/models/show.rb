@@ -3,7 +3,7 @@ require_relative '../../environment'
 class Show < ActiveRecord::Base
   validates :name, :venue, :start_date, :end_date, presence: true
   validates :new, :filter, inclusion: [true, false]
-  validates :name, uniqueness: { scope: [:venue, :start_date, :end_date] }
+  validates :name, uniqueness: { scope: %i[venue start_date end_date] }
 
   scope :unseen, -> {
     where(new: true)
@@ -13,9 +13,9 @@ class Show < ActiveRecord::Base
 
   def to_s
     date_description = if start_date == end_date
-      "on #{start_date}"
-    else
-      "from #{start_date} to #{end_date}"
+                         "on #{start_date}"
+                       else
+                         "from #{start_date} to #{end_date}"
     end
     "#{name} at #{venue} #{date_description}"
   end

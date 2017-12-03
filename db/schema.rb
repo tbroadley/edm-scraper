@@ -11,18 +11,16 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 0) do
-
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "shows", id: :serial, force: :cascade do |t|
-    t.string "name"
-    t.string "venue"
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.string "url"
-    t.boolean "new", default: true
-    t.boolean "filter"
+  create_table 'shows', id: :serial, force: :cascade do |t|
+    t.string 'name'
+    t.string 'venue'
+    t.datetime 'start_date'
+    t.datetime 'end_date'
+    t.string 'url'
+    t.boolean 'new', default: true
+    t.boolean 'filter'
   end
-
 end
