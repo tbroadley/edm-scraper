@@ -7,6 +7,7 @@ class Show < ActiveRecord::Base
 
   scope :unseen, -> {
     where(new: true)
+      .where('end_date >= ?', Date.today)
       .order(start_date: :asc, end_date: :asc, name: :asc)
       .select { |show| !show.filter || filter_artist?(show.name) }
   }
