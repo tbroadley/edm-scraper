@@ -5,6 +5,9 @@ require 'erb'
 require_relative '../environment'
 require_relative 'models/show'
 
+# Add String#truncate, which returns the string if it is less than 40
+# characters. Otherwise, it truncates it to 40 characters and adds an ellipsis
+# to the end.
 class String
   def truncate
     length > 40 ? "#{self[0..39]}..." : self
@@ -46,7 +49,7 @@ def google_calendar_event_link(show)
           else
             "#{show.start_date.strftime(date_format_string)}" \
             "/#{show.end_date.strftime(date_format_string)}"
-  end
+          end
   'https://calendar.google.com/calendar/render' \
     '?action=TEMPLATE' \
     "&text=#{show.name}" \

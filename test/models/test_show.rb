@@ -70,7 +70,7 @@ show_properties = {
   venue: 'Test',
   start_date: Time.new(2005, 1, 1),
   end_date: Time.new(2005, 1, 1),
-  filter: true
+  filter: true,
 }
 
 show_properties.each_key do |key|

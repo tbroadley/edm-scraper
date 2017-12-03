@@ -2,12 +2,15 @@
 
 require_relative '../../environment'
 
+# An event with a name, a venue, and a start and end date.
+# If new is true, the show has never been included in an email.
+# If filter is true, the artist filter should be applied to the show.
 class Show < ActiveRecord::Base
   validates :name, :venue, :start_date, :end_date, presence: true
   validates :new, :filter, inclusion: [true, false]
   validates :name, uniqueness: { scope: %i[venue start_date end_date] }
 
-  scope :unseen, -> {
+  scope :unseen, lambda {
     where(new: true)
       .where('end_date >= ?', Date.today)
       .order(start_date: :asc, end_date: :asc, name: :asc)
@@ -19,7 +22,7 @@ class Show < ActiveRecord::Base
                          "on #{start_date}"
                        else
                          "from #{start_date} to #{end_date}"
-    end
+                       end
     "#{name} at #{venue} #{date_description}"
   end
 end

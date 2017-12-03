@@ -17,7 +17,7 @@ class TestEmailBuilders < Minitest::Test
       [
         Show.new(
           name: 'Your favourite artist'
-        )
+        ),
       ]
     )
 
@@ -32,7 +32,7 @@ class TestEmailBuilders < Minitest::Test
         ),
         Show.new(
           name: 'this random guy'
-        )
+        ),
       ]
     )
 
@@ -52,7 +52,7 @@ class TestEmailBuilders < Minitest::Test
         ),
         Show.new(
           name: 'someone else'
-        )
+        ),
       ]
     )
 
@@ -75,7 +75,7 @@ class TestEmailBuilders < Minitest::Test
         ),
         Show.new(
           name: 'a fourth person'
-        )
+        ),
       ]
     )
 
@@ -101,7 +101,7 @@ class TestEmailBuilders < Minitest::Test
         ),
         Show.new(
           name: 'a bigshot'
-        )
+        ),
       ]
     )
 
@@ -125,7 +125,7 @@ class TestEmailBuilders < Minitest::Test
           venue: 'Woodbine Park',
           start_date: Time.new(2015, 7, 15),
           end_date: Time.new(2015, 7, 18)
-        )
+        ),
       ]
     )
 

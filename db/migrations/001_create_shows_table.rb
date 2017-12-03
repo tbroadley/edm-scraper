@@ -2,6 +2,7 @@
 
 require_relative '../../environment'
 
+# Create the shows table.
 class CreateShowsTable < ActiveRecord::Migration
   def up
     create_table :shows do |t|
@@ -10,7 +11,7 @@ class CreateShowsTable < ActiveRecord::Migration
       t.datetime :start_date
       t.datetime :end_date
       t.string :url
-      t.boolean :new, default: :true
+      t.boolean :new, default: true
     end
   end
 

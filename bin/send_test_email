@@ -11,15 +11,13 @@ end
 
 request = PostageApp::Request.new(
   :send_message,
-  {
-    headers: {
-      from: 'edm-scraper-dev@tbroadley.com',
-      subject: 'Test subject',
-    },
-    recipients: 'buriedunderbooks@hotmail.com',
-    content: {
-      'text/plain': 'Test body'
-    },
+  headers: {
+    from: 'edm-scraper-dev@tbroadley.com',
+    subject: 'Test subject',
+  },
+  recipients: 'buriedunderbooks@hotmail.com',
+  content: {
+    'text/plain': 'Test body',
   }
 )
 

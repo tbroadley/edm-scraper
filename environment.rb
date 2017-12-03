@@ -26,7 +26,10 @@ elsif ENV['DATABASE_ENV'] == 'test'
       File.dirname(__FILE__)
     end
   end
-  ActiveRecord::Base.establish_connection(adapter: :nulldb, schema: 'db/schema.rb')
+  ActiveRecord::Base.establish_connection(
+    adapter: :nulldb,
+    schema: 'db/schema.rb'
+  )
 else
   ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
 end

@@ -11,6 +11,8 @@ Rake::TestTask.new do |t|
 end
 
 desc 'Lint'
-RuboCop::RakeTask.new(:lint, 'bin', 'config', 'db/migrations', 'lib', 'test', '*.rb')
+RuboCop::RakeTask.new(:lint) do |task|
+  task.options = ['bin', 'config', 'db/migrations', 'lib', 'test', '*.rb']
+end
 
 task default: :test
