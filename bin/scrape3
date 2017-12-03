@@ -22,33 +22,41 @@ def text_by_itemprop(element, itemprop)
   element.find("[itemprop=\"#{itemprop}\"]").text
 end
 
+def get_venue(element)
+  venue_and_city = text_by_itemprop(element, 'location')
+  city = text_by_itemprop(element, 'addressLocality')
+  province = text_by_itemprop(element, 'addressRegion')
+  venue_and_city.sub(" #{city}, #{province}", '')
+end
+
+def get_date(element)
+  Date.strptime(
+    element.find('[itemprop="startDate"]', visible: :any)[:content],
+    '%Y-%m-%d'
+  )
+end
+
+def get_url(element)
+  buy_button = element.first('.btn-buy')
+  buy_button ? "https://www.ticketscene.ca#{buy_button[:href]}" : nil
+end
+
+def show_parameters(element)
+  {
+    name: text_by_itemprop(element, 'name'),
+    venue: get_venue(element),
+    start_date: get_date(element),
+    end_date: get_date(element),
+    url: get_url(element),
+    filter: true,
+  }
+end
+
 def go(city)
   visit("https://www.ticketscene.ca/city/#{city}/")
 
   all('.row-event').each do |element|
-    name = text_by_itemprop(element, 'name')
-
-    venue_and_city = text_by_itemprop(element, 'location')
-    city = text_by_itemprop(element, 'addressLocality')
-    province = text_by_itemprop(element, 'addressRegion')
-    venue = venue_and_city.sub(" #{city}, #{province}", '')
-
-    date = Date.strptime(
-      element.find('[itemprop="startDate"]', visible: :any)[:content],
-      '%Y-%m-%d'
-    )
-
-    buy_button = element.first('.btn-buy')
-    url = buy_button ? "https://www.ticketscene.ca#{buy_button[:href]}" : nil
-
-    show = Show.new(
-      name: name,
-      venue: venue,
-      start_date: date,
-      end_date: date,
-      url: url,
-      filter: true
-    )
+    show = Show.new(show_parameters(element))
     puts show.save_and_return_message
   end
 end
