@@ -11,7 +11,7 @@ include Capybara::DSL
 
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, js_errors: false, phantomjs_options: [
-                                      '--ssl-protocol=tlsv1.2'
+                                      '--ssl-protocol=tlsv1.2',
                                     ])
 end
 
@@ -33,13 +33,28 @@ def go(city)
     province = text_by_itemprop(element, 'addressRegion')
     venue = venue_and_city.sub(" #{city}, #{province}", '')
 
-    date = Date.strptime(element.find('[itemprop="startDate"]', visible: :any)[:content], '%Y-%m-%d')
+    date = Date.strptime(
+      element.find('[itemprop="startDate"]', visible: :any)[:content],
+      '%Y-%m-%d'
+    )
 
     buy_button = element.first('.btn-buy')
     url = buy_button ? "https://www.ticketscene.ca#{buy_button[:href]}" : nil
 
-    show = Show.new(name: name, venue: venue, start_date: date, end_date: date, url: url, filter: true)
-    puts show.save ? "Added new show: '#{show}'" : "Show '#{show}' already exists in database"
+    show = Show.new(
+      name: name,
+      venue: venue,
+      start_date: date,
+      end_date: date,
+      url: url,
+      filter: true
+    )
+    message = if show.save
+                "Added new show: '#{show}'"
+              else
+                "Show '#{show}' already exists in database"
+              end
+    puts message
   end
 end
 

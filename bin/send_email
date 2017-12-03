@@ -6,7 +6,7 @@ require 'postageapp'
 require_relative '../environment'
 
 if Show.unseen.empty?
-  puts "No unseen shows"
+  puts 'No unseen shows'
 else
   PostageApp.configure do |config|
     config.api_key = ENV['POSTAGEAPP_API_KEY']
@@ -14,23 +14,25 @@ else
 
   request = PostageApp::Request.new(
     :send_message,
-    {
-      headers: {
-        from: ENV['DATABASE_ENV'] == 'production' ? 'edm-scraper@tbroadley.com' : 'edm-scraper-dev@tbroadley.com',
-        subject: email_subject,
-      },
-      recipients: 'buriedunderbooks@hotmail.com',
-      content: {
-        'text/html': email_body,
-      },
+    headers: {
+      from: if ENV['DATABASE_ENV'] == 'production'
+              'edm-scraper@tbroadley.com'
+            else
+              'edm-scraper-dev@tbroadley.com'
+            end,
+      subject: email_subject,
+    },
+    recipients: 'buriedunderbooks@hotmail.com',
+    content: {
+      'text/html': email_body,
     }
   )
 
-  puts "Sending email to buriedunderbooks@hotmail.com"
+  puts 'Sending email to buriedunderbooks@hotmail.com'
   request.send
 
   puts "Marking #{Show.unseen.size} show#{Show.unseen.size == 1 ? '' : 's'}" \
-       " as seen"
+       ' as seen'
   Show.unseen.each do |show|
     show.update!(new: false)
   end
