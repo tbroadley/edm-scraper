@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 guard :minitest do
   ENV['DATABASE_ENV'] = 'test'
   watch(%r{^test/(.*)\/?test_(.*)\.rb$})

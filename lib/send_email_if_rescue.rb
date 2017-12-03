@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'postageapp'
 
 def send_email_if_rescue(script_name, &block)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FILTER_ARTISTS_LIST = [
   'Habstrakt',
   'TroyBoi',

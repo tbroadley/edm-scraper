@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def parse_date_string(date_string)
   _, month_name, day = /(.*), (.*) (\d*)/.match(date_string).captures
   cleaned_month_name = month_name.gsub(/[^A-Za-z]/, '').downcase
