@@ -91,15 +91,15 @@ class TestEmailBuilders < Minitest::Test
                         Show.new(
                           name: 'Test show 1',
                           venue: "Your mom's house",
-                          start_date: DateTime.new(2015, 0o5, 30),
-                          end_date: DateTime.new(2015, 0o5, 30),
+                          start_date: Time.new(2015, 0o5, 30),
+                          end_date: Time.new(2015, 0o5, 30),
                           url: 'https://buydemtickets.com/test-show-1'
                         ),
                         Show.new(
                           name: 'Test festival (aka Testival)',
                           venue: 'Woodbine Park',
-                          start_date: DateTime.new(2015, 0o7, 15),
-                          end_date: DateTime.new(2015, 0o7, 18)
+                          start_date: Time.new(2015, 0o7, 15),
+                          end_date: Time.new(2015, 0o7, 18)
                         )
                       ])
 
@@ -114,7 +114,7 @@ class TestEmailBuilders < Minitest::Test
   end
 
   def test_format_date_formats_date_correctly
-    assert_equal 'Saturday, February 25', format_date(DateTime.new(2017, 0o2, 25))
+    assert_equal 'Saturday, February 25', format_date(Time.new(2017, 0o2, 25))
   end
 
   def test_google_calendar_event_link_returns_correct_link_if_dates_are_equal
@@ -122,8 +122,8 @@ class TestEmailBuilders < Minitest::Test
     assert_equal expected_url, google_calendar_event_link(Show.new(
                                                             name: 'Test show 1',
                                                             venue: "Your mom's house",
-                                                            start_date: DateTime.new(2015, 0o5, 30),
-                                                            end_date: DateTime.new(2015, 0o5, 30),
+                                                            start_date: Time.new(2015, 0o5, 30),
+                                                            end_date: Time.new(2015, 0o5, 30),
                                                             url: 'https://buydemtickets.com/test-show-1'
     ))
   end
@@ -133,8 +133,8 @@ class TestEmailBuilders < Minitest::Test
     assert_equal expected_url, google_calendar_event_link(Show.new(
                                                             name: 'Test show 1',
                                                             venue: "Your mom's house",
-                                                            start_date: DateTime.new(2015, 0o5, 30),
-                                                            end_date: DateTime.new(2015, 0o5, 31),
+                                                            start_date: Time.new(2015, 0o5, 30),
+                                                            end_date: Time.new(2015, 0o5, 31),
                                                             url: 'https://buydemtickets.com/test-show-1'
     ))
   end
