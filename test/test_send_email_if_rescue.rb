@@ -11,7 +11,8 @@ class TestSendEmailIfRescue < Minitest::Test
     request_mock.expects(:send).once
 
     PostageApp::Request.expects(:new).once.with do |method, options|
-      method == :send_message && options[:headers][:subject] == "EDM Scraper: error while running script '#{script_name}'"
+      error_subject = "EDM Scraper: error while running script '#{script_name}'"
+      method == :send_message && options[:headers][:subject] == error_subject
     end.returns(request_mock)
 
     send_email_if_rescue(script_name) do
