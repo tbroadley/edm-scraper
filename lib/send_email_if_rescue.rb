@@ -17,15 +17,15 @@ def send_email_if_rescue(script_name, &block)
 
     request = PostageApp::Request.new(
       :send_message,
-      {
-        headers: {
-          from: ENV['DATABASE_ENV'] == 'production' ? 'edm-scraper@tbroadley.com' : 'edm-scraper-dev@tbroadley.com',
-          subject: "EDM Scraper: error while running script '#{script_name}'",
-        },
-        recipients: 'buriedunderbooks@hotmail.com',
-        content: {
-          'text/plain': "#{exception.inspect}\n\n#{exception.backtrace.join('\n')}",
-        },
+      headers: {
+        from: ENV['DATABASE_ENV'] == 'production' ?
+              'edm-scraper@tbroadley.com' :
+              'edm-scraper-dev@tbroadley.com',
+        subject: "EDM Scraper: error while running script '#{script_name}'",
+      },
+      recipients: 'buriedunderbooks@hotmail.com',
+      content: {
+        'text/plain': "#{exception.inspect}\n\n#{exception.backtrace.join('\n')}",
       }
     )
 
