@@ -70,7 +70,7 @@ class TestShow < Minitest::Test
       name: 'Test show',
       venue: 'Test venue',
       start_date: date,
-      end_date: date,
+      end_date: date
     )
     show.expects(:save).once.returns(true)
     assert_equal "Added new show: '#{show}'", show.save_and_return_message
@@ -82,10 +82,11 @@ class TestShow < Minitest::Test
       name: 'Test show',
       venue: 'Test venue',
       start_date: date,
-      end_date: date,
+      end_date: date
     )
     show.expects(:save).once.returns(false)
-    assert_equal "Show '#{show}' already exists in database", show.save_and_return_message
+    assert_equal "Show '#{show}' already exists in database",
+                 show.save_and_return_message
   end
 end
 

@@ -144,7 +144,7 @@ class TestEmailBuilders < Minitest::Test
   end
 
   def test_google_calendar_event_link_returns_correct_link_if_dates_are_equal
-    expected_url = "https://calendar.google.com/calendar/render?" \
+    expected_url = 'https://calendar.google.com/calendar/render?' \
       'action=TEMPLATE&text=Test+show+1' \
       '&dates=20150530T220000/20150531T000000&location=Your+mom\'s+house' \
       '&details=https://buydemtickets.com/test-show-1'
