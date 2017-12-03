@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
-def parse_date_string(date_string)
-  _, month_name, day = /(.*), (.*) (\d*)/.match(date_string).captures
+def month_index(month_name)
   cleaned_month_name = month_name.gsub(/[^A-Za-z]/, '').downcase
-  month = Date::MONTHNAMES[1..-1]
-          .map(&:downcase)
-          .find_index { |name| name.start_with?(cleaned_month_name) } + 1
+  Date::MONTHNAMES[1..-1]
+    .map(&:downcase)
+    .find_index { |name| name.start_with?(cleaned_month_name) } + 1
+end
+
+def parse_date_string(date_string)
   year = Time.now.strftime('%Y').to_i
-  date = Time.new(year, month, day.to_i)
+  _, month_name, day = /(.*), (.*) (\d*)/.match(date_string).captures
+  date = Time.new(year, month_index(month_name), day.to_i)
   date < (Time.now - 1.week) ? date.next_year : date
 end
 
