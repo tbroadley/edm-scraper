@@ -63,6 +63,30 @@ class TestShow < Minitest::Test
     assert_equal "#{name} at #{venue} from #{start_date} to #{end_date}",
                  show.to_s
   end
+
+  def test_show_save_and_return_message_if_successful_save
+    date = Time.new(2005, 1, 2)
+    show = Show.new(
+      name: 'Test show',
+      venue: 'Test venue',
+      start_date: date,
+      end_date: date,
+    )
+    show.expects(:save).once.returns(true)
+    assert_equal "Added new show: '#{show}'", show.save_and_return_message
+  end
+
+  def test_show_save_and_return_message_if_unsuccessful_save
+    date = Time.new(2005, 1, 2)
+    show = Show.new(
+      name: 'Test show',
+      venue: 'Test venue',
+      start_date: date,
+      end_date: date,
+    )
+    show.expects(:save).once.returns(false)
+    assert_equal "Show '#{show}' already exists in database", show.save_and_return_message
+  end
 end
 
 show_properties = {

@@ -25,4 +25,12 @@ class Show < ActiveRecord::Base
                        end
     "#{name} at #{venue} #{date_description}"
   end
+
+  def save_and_return_message
+    if save
+      "Added new show: '#{self}'"
+    else
+      "Show '#{self}' already exists in database"
+    end
+  end
 end

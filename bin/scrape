@@ -45,11 +45,6 @@ send_email_if_rescue('scrape') do
       url: url,
       filter: false
     )
-    message = if show.save
-                "Added new show: '#{show}'"
-              else
-                "Show '#{show}' already exists in database"
-              end
-    puts message
+    puts show.save_and_return_message
   end
 end
