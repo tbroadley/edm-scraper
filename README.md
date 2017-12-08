@@ -3,7 +3,7 @@
 Scripts for:
 - Scraping lists of concerts from several websites
 - Storing the scraped shows in a database
-- Compiling new shows into an email, sent using PostageApp
+- Compiling new shows into an email, sent using 
 
 The project is hosted on [Heroku](https://dashboard.heroku.com/apps/edm-scraper).
 
