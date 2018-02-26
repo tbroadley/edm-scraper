@@ -12,7 +12,7 @@ end
 request = PostageApp::Request.new(
   :send_message,
   headers: {
-    from: 'edm-scraper-dev@tbroadley.com',
+    from: 'edm-scraper-dev@thomasbroadley.com',
     subject: 'Test subject',
   },
   recipients: 'buriedunderbooks@hotmail.com',

@@ -4,9 +4,9 @@ require 'postageapp'
 
 def sender_address
   if ENV['DATABASE_ENV'] == 'production'
-    'edm-scraper@tbroadley.com'
+    'edm-scraper@thomasbroadley.com'
   else
-    'edm-scraper-dev@tbroadley.com'
+    'edm-scraper-dev@thomasbroadley.com'
   end
 end
 
