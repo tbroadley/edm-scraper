@@ -1,5 +1,8 @@
 AllCops:
   TargetRubyVersion: 2.3
 
+Style/EndOfLine:
+  EnforcedStyle: lf
+
 Style/TrailingCommaInLiteral:
   EnforcedStyleForMultiline: comma
