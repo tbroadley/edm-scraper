@@ -2,7 +2,7 @@ AllCops:
   TargetRubyVersion: 2.3
 
 Style/EndOfLine:
-  EnforcedStyle: lf
+  Enabled: false
 
 Style/TrailingCommaInLiteral:
   EnforcedStyleForMultiline: comma
