@@ -19,11 +19,12 @@ Capybara.default_driver = :poltergeist
 
 # send_email_if_rescue('scrape_nyc_2') do
   visit('https://www.ohmyrockness.com/shows?all=true')
+  sleep 30
 
   all('#upcomingShows .row.vevent').each do |element|
     date_element = element.find('.date.dtstart .value-title')
     date = Date.parse(date_element[:title])
-    next if date >= Date.new(2018, 5, 1) && date <= Date.new(2018, 8, 31)
+    next if date < Date.new(2018, 5, 1) && date > Date.new(2018, 8, 31)
 
     name_element = element.find('.bands.summary')
     name = name_element.text
