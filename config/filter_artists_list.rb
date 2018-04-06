@@ -97,4 +97,12 @@ FILTER_ARTISTS_LIST = [
   'Virtual Self',
   'Rikashay',
   'Big Wild',
+  'Anomalie',
+  'What So Not',
+  'Opiuo',
+  'Lorde',
+  'Bo En',
+  'San Holo',
+  'Kasbo',
+  'MOONZz',
 ].freeze
