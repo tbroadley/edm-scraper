@@ -31,7 +31,7 @@ def email_subject(shows)
     "#{first}, #{second}, #{third}, and 1 other are"
   else
     "#{first}, #{second}, #{third}, and #{Show.unseen.count - 3} others are"
-  end + ' coming to Toronto!'
+  end + ' coming to a venue near you!'
 end
 # rubocop:enable Metrics/MethodLength
 

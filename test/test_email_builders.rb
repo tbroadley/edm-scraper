@@ -21,7 +21,7 @@ class TestEmailBuilders < Minitest::Test
       ]
     )
 
-    assert_equal 'Your favourite artist is coming to Toronto!',
+    assert_equal 'Your favourite artist is coming to a venue near you!',
                  email_subject(Show.unseen)
   end
 
@@ -38,7 +38,7 @@ class TestEmailBuilders < Minitest::Test
     )
 
     assert_equal 'Your favourite artist and this random guy are coming to ' \
-                 'Toronto!',
+                 'a venue near you!',
                  email_subject(Show.unseen)
   end
 
@@ -58,7 +58,7 @@ class TestEmailBuilders < Minitest::Test
     )
 
     assert_equal 'Your favourite artist, this random guy, and someone else ' \
-                 'are coming to Toronto!',
+                 'are coming to a venue near you!',
                  email_subject(Show.unseen)
   end
 
@@ -81,7 +81,7 @@ class TestEmailBuilders < Minitest::Test
     )
 
     assert_equal 'Your favourite artist, this random guy, someone else, and ' \
-                 '1 other are coming to Toronto!',
+                 '1 other are coming to a venue near you!',
                  email_subject(Show.unseen)
   end
 
@@ -107,7 +107,7 @@ class TestEmailBuilders < Minitest::Test
     )
 
     assert_equal 'Your favourite artist, this random guy, someone else, and ' \
-                 '2 others are coming to Toronto!',
+                 '2 others are coming to a venue near you!',
                  email_subject(Show.unseen)
   end
 
