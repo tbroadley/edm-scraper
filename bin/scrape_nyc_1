@@ -24,7 +24,7 @@ send_email_if_rescue('scrape_nyc_1') do
 
   all('#eventListing .eventContainer').each do |element|
     date = Date.parse(element[:sorteddate])
-    next if date >= Date.new(2018, 5, 1) && date <= Date.new(2018, 8, 31)
+    next if date < Date.new(2018, 5, 1) && date > Date.new(2018, 8, 31)
 
     name = element[:titlestr]
     venue = element[:venue]
