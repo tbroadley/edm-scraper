@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'capybara'
+require 'capybara/dsl'
+require 'capybara/poltergeist'
+
+require_relative '../environment'
+
+include Capybara::DSL
+
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, js_errors: false, phantomjs_options: [
+                                      '--ssl-protocol=tlsv1.2',
+                                    ])
+end
+
+Capybara.default_driver = :poltergeist
+Capybara.default_max_wait_time = 10
+
+send_email_if_rescue('scrape_nyc_1') do
+  visit('https://edmtrain.com/new-york-city-ny')
+  sleep 10
+
+  all('#eventListing .eventContainer').each do |element|
+    date = Date.parse(element[:sorteddate])
+    next if date >= Date.new(2018, 5, 1) && date <= Date.new(2018, 8, 31)
+
+    name = element[:titlestr]
+    venue = element[:venue]
+
+    ticket_selector = '.eventOptions > .optionsTable .eventLink > a'
+    ticket_link = element.find(ticket_selector, visible: :all)
+    url = ticket_link[:href]
+
+    show = Show.new(
+      name: name,
+      venue: venue,
+      start_date: date,
+      end_date: date,
+      url: url,
+      filter: true
+    )
+    puts show.save_and_return_message
+  end
+end
