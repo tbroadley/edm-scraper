@@ -33,8 +33,7 @@ Capybara.default_driver = :poltergeist
     venue_element = element.find('.venue .location.vcard.url .fn.org')
     venue = venue_element.text
 
-    ticket_selector = '.eventOptions > .optionsTable .eventLink > a'
-    ticket_link = element.find('.tickets .ticketLink.tickets')
+    ticket_link = element.find('.tickets > .show-more-info')
     url = ticket_link[:href]
 
     show = Show.new(
