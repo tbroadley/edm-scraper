@@ -17,7 +17,7 @@ end
 
 Capybara.default_driver = :poltergeist
 
-# send_email_if_rescue('scrape_nyc_2') do
+send_email_if_rescue('scrape_nyc_2') do
   visit('https://www.ohmyrockness.com/shows?all=true')
   sleep 30
 
@@ -27,9 +27,7 @@ Capybara.default_driver = :poltergeist
     next if date < Date.new(2018, 5, 1) && date > Date.new(2018, 8, 31)
 
     name_element = element.find('.bands.summary')
-    name = name_element.text
-                       .gsub('*', '')
-                       .strip
+    name = name_element.text.delete('*').strip
 
     venue_element = element.find('.venue .location.vcard.url .fn.org')
     venue = venue_element.text
@@ -47,4 +45,4 @@ Capybara.default_driver = :poltergeist
     )
     puts show.save_and_return_message
   end
-# end
+end
