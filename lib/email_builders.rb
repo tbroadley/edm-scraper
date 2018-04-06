@@ -5,6 +5,8 @@ require 'erb'
 require_relative '../environment'
 require_relative 'models/show'
 
+MAX_SHOWS_PER_EMAIL = 25
+
 # Add String#truncate, which returns the string if it is less than 40
 # characters. Otherwise, it truncates it to 40 characters and adds an ellipsis
 # to the end.
@@ -15,8 +17,8 @@ class String
 end
 
 # rubocop:disable Metrics/MethodLength
-def email_subject
-  first, second, third = Show.unseen.map(&:name).map(&:truncate)
+def email_subject(shows)
+  first, second, third = shows.map(&:name).map(&:truncate)
 
   case Show.unseen.count
   when 1
@@ -33,10 +35,17 @@ def email_subject
 end
 # rubocop:enable Metrics/MethodLength
 
-def email_body
+def email_body(shows)
   b = binding
-  b.local_variable_set(:shows, Show.unseen)
+  b.local_variable_set(:shows, shows)
   ERB.new(File.read('lib/mailers/show_mailer.html.erb')).result(b)
+end
+
+def emails
+  show_groups = Show.unseen.each_slice(MAX_SHOWS_PER_EMAIL).to_a
+  show_groups.map do |group|
+    { subject: email_subject(group), body: email_body(group) }
+  end
 end
 
 def format_date(date)

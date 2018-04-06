@@ -21,7 +21,8 @@ class TestEmailBuilders < Minitest::Test
       ]
     )
 
-    assert_equal 'Your favourite artist is coming to Toronto!', email_subject
+    assert_equal 'Your favourite artist is coming to Toronto!',
+                 email_subject(Show.unseen)
   end
 
   def test_email_subject_returns_correct_string_with_two_shows
@@ -38,7 +39,7 @@ class TestEmailBuilders < Minitest::Test
 
     assert_equal 'Your favourite artist and this random guy are coming to ' \
                  'Toronto!',
-                 email_subject
+                 email_subject(Show.unseen)
   end
 
   def test_email_subject_returns_correct_string_with_three_shows
@@ -58,7 +59,7 @@ class TestEmailBuilders < Minitest::Test
 
     assert_equal 'Your favourite artist, this random guy, and someone else ' \
                  'are coming to Toronto!',
-                 email_subject
+                 email_subject(Show.unseen)
   end
 
   def test_email_subject_returns_correct_string_with_four_shows
@@ -81,7 +82,7 @@ class TestEmailBuilders < Minitest::Test
 
     assert_equal 'Your favourite artist, this random guy, someone else, and ' \
                  '1 other are coming to Toronto!',
-                 email_subject
+                 email_subject(Show.unseen)
   end
 
   def test_email_subject_returns_correct_string_with_more_than_four_shows
@@ -107,7 +108,7 @@ class TestEmailBuilders < Minitest::Test
 
     assert_equal 'Your favourite artist, this random guy, someone else, and ' \
                  '2 others are coming to Toronto!',
-                 email_subject
+                 email_subject(Show.unseen)
   end
 
   def test_email_body_renders_correctly
@@ -129,7 +130,9 @@ class TestEmailBuilders < Minitest::Test
       ]
     )
 
-    stripped_email_body = email_body.split("\n").map(&:rstrip).join("\n") + "\n"
+    stripped_email_body = email_body(Show.unseen).split("\n")
+                                                 .map(&:rstrip)
+                                                 .join("\n") + "\n"
 
     snapshot_path = "test/__snapshots__/#{__method__}.snapshot.html"
     if ENV['UPDATE_SNAPSHOTS']

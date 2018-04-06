@@ -12,24 +12,27 @@ else
     config.api_key = ENV['POSTAGEAPP_API_KEY']
   end
 
-  request = PostageApp::Request.new(
-    :send_message,
-    headers: {
-      from: if ENV['DATABASE_ENV'] == 'production'
-              'edm-scraper@thomasbroadley.com'
-            else
-              'edm-scraper-dev@thomasbroadley.com'
-            end,
-      subject: email_subject,
-    },
-    recipients: 'buriedunderbooks@hotmail.com',
-    content: {
-      'text/html': email_body,
-    }
-  )
+  puts 'Sending emails to buriedunderbooks@hotmail.com'
 
-  puts 'Sending email to buriedunderbooks@hotmail.com'
-  request.send
+  emails.each do |email|
+    request = PostageApp::Request.new(
+      :send_message,
+      headers: {
+        from: if ENV['DATABASE_ENV'] == 'production'
+                'edm-scraper@thomasbroadley.com'
+              else
+                'edm-scraper-dev@thomasbroadley.com'
+              end,
+        subject: email[:subject],
+      },
+      recipients: 'buriedunderbooks@hotmail.com',
+      content: {
+        'text/html': email[:body],
+      }
+    )
+
+    request.send
+  end
 
   puts "Marking #{Show.unseen.size} show#{Show.unseen.size == 1 ? '' : 's'}" \
        ' as seen'
