@@ -105,4 +105,5 @@ FILTER_ARTISTS_LIST = [
   'San Holo',
   'Kasbo',
   'MOONZz',
+  'Remo Drive',
 ].freeze
