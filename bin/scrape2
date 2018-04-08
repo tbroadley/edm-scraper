@@ -25,6 +25,8 @@ send_email_if_rescue('scrape2') do
     if element[:class] == 'date'
       current_date = parse_date_string_2(element.text)
     elsif element[:class].split(' ').include?('c')
+      next unless current_date < Date.new(2018, 5, 1) ||
+                  current_date > Date.new(2018, 8, 31)
       show_and_venue = element.find('.show')
       venue = show_and_venue.find('.venue').text
       name = show_and_venue.text.sub(" #{venue}", '')

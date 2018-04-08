@@ -16,35 +16,51 @@ end
 Capybara.default_driver = :poltergeist
 Capybara.default_max_wait_time = 0.1
 
+def get_url(element)
+  link = element.first('a')
+  link ? link[:href] : nil
+end
+
+def parse_element(element)
+  match = /(.*) - (.*) @ (.*)/.match(element.text)
+  if match.nil?
+    raise "Element with text '#{element.text}' does not match expected " \
+          'format (name - date @ venue)'
+  end
+
+  match.captures
+end
+
+def parse_dates(date_string)
+  start_date_string, end_date_string = date_string.split(' - ')
+  start_date = parse_date_string(start_date_string)
+  end_date = parse_date_string(end_date_string || start_date_string)
+  [start_date, end_date]
+end
+
+def show_parameters(element)
+  date_string, name, venue = parse_element(element)
+  start_date, end_date = parse_dates(date_string)
+
+  {
+    name: name,
+    venue: venue,
+    start_date: start_date,
+    end_date: end_date,
+    url: get_url(element),
+    filter: false,
+  }
+end
+
 send_email_if_rescue('scrape') do
   visit('http://www.edmcanada.com/toronto/')
-
   all('.main-content [data-block-type="2"] p:first-child').each do |element|
     next if element.text.start_with?('Support EDM Canada')
 
-    link = element.first('a')
-    url = link ? link[:href] : nil
-
-    match = /(.*) - (.*) @ (.*)/.match(element.text)
-    if match.nil?
-      raise "Element with text '#{element.text}' does not match expected " \
-            'format (name - date @ venue)'
-    end
-
-    date_string, name, venue = match.captures
-
-    start_date_string, end_date_string = date_string.split(' - ')
-    start_date = parse_date_string(start_date_string)
-    end_date = parse_date_string(end_date_string || start_date_string)
-
-    show = Show.new(
-      name: name,
-      venue: venue,
-      start_date: start_date,
-      end_date: end_date,
-      url: url,
-      filter: false
-    )
+    params = show_parameters(element)
+    date = params[:start_date]
+    next unless date < Date.new(2018, 5, 1) || date > Date.new(2018, 8, 31)
+    show = Show.new(params)
     puts show.save_and_return_message
   end
 end

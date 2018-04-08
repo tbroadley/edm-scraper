@@ -56,7 +56,10 @@ def go(city)
   visit("https://www.ticketscene.ca/city/#{city}/")
 
   all('.row-event').each do |element|
-    show = Show.new(show_parameters(element))
+    params = show_parameters(element)
+    date = params[:start_date]
+    next unless date < Date.new(2018, 5, 1) || date > Date.new(2018, 8, 31)
+    show = Show.new(params)
     puts show.save_and_return_message
   end
 end
