@@ -12,7 +12,7 @@ include Capybara::DSL
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, js_errors: false, phantomjs_options: [
                                       '--ssl-protocol=tlsv1.2',
-                                    ], timeout: 5.minutes)
+                                    ], timeout: 10.minutes)
 end
 
 Capybara.default_driver = :poltergeist
