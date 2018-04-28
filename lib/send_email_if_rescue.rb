@@ -11,7 +11,7 @@ def sender_address
 end
 
 def exception_content(exception)
-  "#{exception.inspect}\n\n#{exception.backtrace.join("\n")}"
+  "#{exception.message}\n\n#{exception.backtrace.join("\n")}"
 end
 
 def build_request(script_name, exception)
