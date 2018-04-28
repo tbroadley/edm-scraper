@@ -22,7 +22,7 @@ def build_request(script_name, exception)
       subject: "EDM Scraper: error while running script '#{script_name}'",
     },
     recipients: 'buriedunderbooks@hotmail.com',
-    content: { 'text/html': "<code>#{exception_content(exception)}</code>" }
+    content: { 'text/html': "<pre>#{exception_content(exception)}</pre>" }
   )
 end
 
