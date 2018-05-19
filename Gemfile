@@ -16,3 +16,5 @@ gem 'minitest', '5.10.3'
 gem 'mocha', '1.3.0'
 gem 'rubocop', '0.51.0', require: false
 gem 'wdm', '0.1.1' if Gem.win_platform?
+
+gem 'puma', '3.11.4'
