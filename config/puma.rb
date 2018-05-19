@@ -1,5 +1,7 @@
 #!/usr/bin/env puma
 
+# frozen_string_literal: true
+
 require_relative '../environment.rb'
 require_relative '../lib/email_builders.rb'
 require_relative '../lib/models/show.rb'
@@ -17,7 +19,7 @@ def respond(body, content_type: 'text/plain', response_code: 200, **kwargs)
 end
 
 def generate_index(shows)
-  %Q(
+  %(
     <!DOCTYPE html>
     <html>
       <head>
