@@ -20,7 +20,7 @@ end
 def email_subject(shows)
   first, second, third = shows.map(&:name).map(&:truncate)
 
-  case Show.unseen.count
+  case shows.count
   when 1
     "#{first} is"
   when 2
@@ -30,7 +30,7 @@ def email_subject(shows)
   when 4
     "#{first}, #{second}, #{third}, and 1 other are"
   else
-    "#{first}, #{second}, #{third}, and #{Show.unseen.count - 3} others are"
+    "#{first}, #{second}, #{third}, and #{shows.count - 3} others are"
   end + ' coming to a venue near you!'
 end
 # rubocop:enable Metrics/MethodLength
