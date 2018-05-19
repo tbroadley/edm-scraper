@@ -48,6 +48,7 @@ GEM
       dotenv (= 2.2.1)
       railties (>= 3.2, < 5.2)
     erubi (1.7.0)
+    ffi (1.9.18)
     ffi (1.9.18-x64-mingw32)
     formatador (0.2.5)
     guard (2.14.1)
@@ -84,6 +85,8 @@ GEM
     mocha (1.3.0)
       metaclass (~> 0.0.1)
     nenv (0.3.0)
+    nokogiri (1.8.1)
+      mini_portile2 (~> 2.3.0)
     nokogiri (1.8.1-x64-mingw32)
       mini_portile2 (~> 2.3.0)
     notiffany (0.1.1)
@@ -92,6 +95,7 @@ GEM
     parallel (1.12.0)
     parser (2.4.0.2)
       ast (~> 2.3)
+    pg (0.21.0)
     pg (0.21.0-x64-mingw32)
     poltergeist (1.16.0)
       capybara (~> 2.1)
@@ -140,7 +144,6 @@ GEM
     tzinfo (1.2.4)
       thread_safe (~> 0.1)
     unicode-display_width (1.3.0)
-    wdm (0.1.1)
     websocket-driver (0.7.0)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
@@ -148,6 +151,7 @@ GEM
       nokogiri (~> 1.3)
 
 PLATFORMS
+  ruby
   x64-mingw32
 
 DEPENDENCIES
@@ -163,7 +167,6 @@ DEPENDENCIES
   poltergeist (= 1.16.0)
   postageapp (= 1.3.1)
   rubocop (= 0.51.0)
-  wdm (= 0.1.1)
 
 BUNDLED WITH
-   1.16.0
+   1.16.2
