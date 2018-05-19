@@ -20,4 +20,4 @@ POSTAGEAPP_API_KEY=key
 
 Invoke `ruby bin/TASK` to run a specific task.
 
-Invoke `rake test` to run the tests once or `bundle exec guard` to rerun them every time a file changes.
+Invoke `rake test` to run the tests once or `bundle exec guard` to rerun them every time a file changes. Invoke `rake lint` to lint the Ruby code.
