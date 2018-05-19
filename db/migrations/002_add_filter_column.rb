@@ -4,7 +4,7 @@ require_relative '../../environment'
 
 # Add a column called filter. When this column is true, run the artist filter
 # against the show.
-class AddFilterColumn < ActiveRecord::Migration
+class AddFilterColumn < ActiveRecord::Migration[4.2]
   def up
     add_column :shows, :filter, :boolean
     Show.update_all(filter: false)

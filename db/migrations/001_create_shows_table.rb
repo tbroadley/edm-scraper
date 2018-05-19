@@ -3,7 +3,7 @@
 require_relative '../../environment'
 
 # Create the shows table.
-class CreateShowsTable < ActiveRecord::Migration
+class CreateShowsTable < ActiveRecord::Migration[4.2]
   def up
     create_table :shows do |t|
       t.string :name
