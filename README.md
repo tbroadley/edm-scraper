@@ -15,7 +15,7 @@ Create a file called `.env` in the project's root directory. This contains envir
 
 ```
 DATABASE_ENV=development
-POSTAGEAPP_API_TOKEN=token
+POSTAGEAPP_API_KEY=key
 ```
 
 Invoke `ruby bin/TASK` to run a specific task.
