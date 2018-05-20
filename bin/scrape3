@@ -48,7 +48,7 @@ def show_parameters(element)
     start_date: get_date(element),
     end_date: get_date(element),
     url: get_url(element),
-    filter: true,
+    filter: !filter_artist?(show.name),
   }
 end
 

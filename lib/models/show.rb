@@ -11,14 +11,14 @@ class Show < ActiveRecord::Base
   validates :name, uniqueness: { scope: %i[venue start_date end_date] }
 
   scope :interesting, lambda {
-    where('end_date >= ?', Date.today)
+    where(filter: false)
+      .where('end_date >= ?', Date.today)
       .order(start_date: :asc, end_date: :asc, name: :asc)
-      .select { |show| !show.filter || filter_artist?(show.name) }
   }
 
   scope :unseen, lambda {
-    where(new: true)
-      .interesting
+    interesting
+      .where(new: true)
   }
 
   def to_s
