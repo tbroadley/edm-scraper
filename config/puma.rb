@@ -10,7 +10,7 @@ def respond(body, content_type: 'text/plain', response_code: 200, **kwargs)
   [
     response_code,
     {
-      'Content-Type' => content_type,
+      'Content-Type' => "#{content_type}; charset=utf-8",
       'Content-Length' => body.length.to_s,
       **kwargs,
     },
