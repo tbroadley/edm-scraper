@@ -42,13 +42,14 @@ def get_url(element)
 end
 
 def show_parameters(element)
+  name = text_by_itemprop(element, 'name')
   {
-    name: text_by_itemprop(element, 'name'),
+    name: name,
     venue: get_venue(element),
     start_date: get_date(element),
     end_date: get_date(element),
     url: get_url(element),
-    filter: !filter_artist?(show.name),
+    filter: !filter_artist?(name),
   }
 end
 
