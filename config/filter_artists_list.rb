@@ -106,4 +106,5 @@ FILTER_ARTISTS_LIST = [
   'Kasbo',
   'MOONZz',
   'Remo Drive',
+  'Snarky Puppy',
 ].freeze
