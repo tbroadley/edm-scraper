@@ -43,6 +43,10 @@ class TestParseDateString < Minitest::Test
     assert_equal Time.new(2006, 6, 22), parse_date_string('Thursday, June 22rd')
   end
 
+  def test_parse_date_string_handles_non_date
+    assert_nil parse_date_string('After V')
+  end
+
   def test_parse_date_string_2_parses_dates_correctly
     (Date.new(2005, 1, 1)..Date.new(2005, 12, 31)).each do |date|
       assert_equal Time.new(date.year, date.month, date.day),
