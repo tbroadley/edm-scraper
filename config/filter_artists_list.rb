@@ -107,4 +107,5 @@ FILTER_ARTISTS_LIST = [
   'MOONZz',
   'Remo Drive',
   'Snarky Puppy',
+  'Rivers Cuomo',
 ].freeze
