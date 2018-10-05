@@ -108,4 +108,5 @@ FILTER_ARTISTS_LIST = [
   'Remo Drive',
   'Snarky Puppy',
   'Rivers Cuomo',
+  'Jaden Smith',
 ].freeze
