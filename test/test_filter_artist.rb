@@ -30,4 +30,11 @@ class TestParseDateString < Minitest::Test
     assert filter_artist?('WEEZER')
     assert filter_artist?('weezer')
   end
+
+  def test_filter_artist_escapes_special_characters
+    refute filter_artist?('Acid Dad')
+    refute filter_artist?('Kid Gorgeous')
+    assert filter_artist?('k?d')
+    assert filter_artist?('K?d')
+  end
 end
