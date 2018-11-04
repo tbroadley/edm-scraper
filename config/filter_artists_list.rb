@@ -119,4 +119,5 @@ FILTER_ARTISTS_LIST = [
   'Anomalie',
   'Run the Jewels',
   'Rezz',
+  'Rilan and the Bombardiers',
 ].freeze
