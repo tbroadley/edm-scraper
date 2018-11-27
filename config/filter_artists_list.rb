@@ -120,4 +120,5 @@ FILTER_ARTISTS_LIST = [
   'Run the Jewels',
   'Rezz',
   'Rilan and the Bombardiers',
+  'SAINT PUNK',
 ].freeze
