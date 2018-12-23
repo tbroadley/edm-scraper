@@ -121,4 +121,5 @@ FILTER_ARTISTS_LIST = [
   'Rezz',
   'Rilan and the Bombardiers',
   'SAINT PUNK',
+  'LUCA LUSH',
 ].freeze
