@@ -172,5 +172,8 @@ DEPENDENCIES
   puma (= 3.11.4)
   rubocop (= 0.51.0)
 
+RUBY VERSION
+   ruby 2.3.7p456
+
 BUNDLED WITH
    1.16.2

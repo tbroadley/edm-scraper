@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 source 'http://rubygems.org'
+ruby '2.3.7'
 
 gem 'activerecord', '5.1.4'
 gem 'capybara', '3.12.0'
