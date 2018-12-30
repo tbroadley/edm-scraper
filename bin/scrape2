@@ -29,9 +29,10 @@ send_email_if_rescue('scrape2') do
                   current_date > Date.new(2018, 8, 31)
       show_and_venue = element.find('.show')
       venue = show_and_venue.find('.venue').text
-      name = show_and_venue.text.sub(" #{venue}", '')
+      name = show_and_venue.text.sub("\n#{venue}", '').strip
 
-      name = name.sub(/ [Nn]ew$/, '') if show_and_venue.first('.new')
+      name = name.sub(/ [Nn]ew$/, '') if show_and_venue.first('.new',
+                                                              minimum: 0)
 
       ticket_link = element.find('.tickets > p:first-child > a')
       url = ticket_link[:href]
