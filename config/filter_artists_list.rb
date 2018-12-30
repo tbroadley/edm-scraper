@@ -122,4 +122,5 @@ FILTER_ARTISTS_LIST = [
   'Rilan and the Bombardiers',
   'SAINT PUNK',
   'LUCA LUSH',
+  'Alexander Lewis',
 ].freeze
