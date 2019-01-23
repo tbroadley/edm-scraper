@@ -5,7 +5,7 @@ Scripts for:
 - Storing the scraped shows in a database
 - Compiling new shows into an email, sent using PostageApp
 
-The project is hosted on [Heroku](https://dashboard.heroku.com/apps/edm-scraper).
+The project is hosted on [Heroku](https://edm-scraper.herokuapp.com/).
 
 ## Development
 
