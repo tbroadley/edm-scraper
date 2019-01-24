@@ -124,4 +124,6 @@ FILTER_ARTISTS_LIST = [
   'SAINT PUNK',
   'LUCA LUSH',
   'Alexander Lewis',
+  'billwurtz',
+  'bill wurtz',
 ].freeze
