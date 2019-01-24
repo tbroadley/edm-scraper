@@ -32,6 +32,7 @@ FILTER_ARTISTS_LIST = [
   'Gavin Turek',
   'Chiara Hunter',
   "Skogsr\xC3\xA5",
+  'Skogsra',
   'SOPHIE',
   'Curbi',
   'Skylar Spence',
