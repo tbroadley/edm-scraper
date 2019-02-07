@@ -126,4 +126,5 @@ FILTER_ARTISTS_LIST = [
   'Alexander Lewis',
   'billwurtz',
   'bill wurtz',
+  'Too Many Zooz',
 ].freeze
