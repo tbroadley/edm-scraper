@@ -117,7 +117,6 @@ FILTER_ARTISTS_LIST = [
   'KRANE',
   'k?d',
   'Mitski',
-  'Anomalie',
   'Run the Jewels',
   'Rezz',
   'Rilan and the Bombardiers',
