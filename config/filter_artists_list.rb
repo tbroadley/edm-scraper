@@ -126,4 +126,5 @@ FILTER_ARTISTS_LIST = [
   'billwurtz',
   'bill wurtz',
   'Too Many Zooz',
+  'Lucy Daydream',
 ].freeze
