@@ -128,4 +128,5 @@ FILTER_ARTISTS_LIST = [
   'Too Many Zooz',
   'Lucy Daydream',
   'Jacob Collier',
+  'Parcels',
 ].freeze
