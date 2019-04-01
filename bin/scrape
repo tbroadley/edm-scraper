@@ -20,8 +20,7 @@ Capybara.default_driver = :poltergeist
 Capybara.default_max_wait_time = 0.1
 
 def get_url(element)
-  link = element.first('a')
-  link ? link[:href] : nil
+  element ? element[:href] : nil
 end
 
 def parse_element(element)
@@ -57,7 +56,9 @@ end
 
 send_email_if_rescue('scrape') do
   visit('http://www.edmcanada.com/toronto/')
-  all('.main-content [data-block-type="2"] p:first-child').each do |element|
+  execute_script('Array.prototype.slice.call(document.querySelectorAll("h3"))'\
+    '.forEach(function(elt) { elt.style.textTransform = "none"; })')
+  all('.main-content [data-block-type="2"] a').each do |element|
     next if element.text.start_with?('Support EDM Canada')
 
     params = show_parameters(element)
