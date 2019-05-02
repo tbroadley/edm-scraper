@@ -3,7 +3,7 @@
 source 'http://rubygems.org'
 ruby '2.4.6'
 
-gem 'activerecord', '5.1.4'
+gem 'activerecord', '~> 5.1'
 gem 'capybara', '3.12.0'
 gem 'dotenv-rails', '2.6.0'
 gem 'pg', '0.21.0'
