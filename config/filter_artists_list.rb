@@ -147,4 +147,5 @@ FILTER_ARTISTS_LIST = [
   'The Upper Tunist',
   'Ryn Weaver',
   'Virtual Self',
+  'Vulfpeck',
 ].freeze
