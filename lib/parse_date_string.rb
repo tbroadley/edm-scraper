@@ -8,7 +8,7 @@ def month_index(month_name)
 end
 
 def decompose_date_string(date_string)
-  date_regex_result = /(.*), (.*) (\d*)/.match(date_string)
+  date_regex_result = /([.\w]*), ([.\w]*) (\d*)/.match(date_string)
   return nil if date_regex_result.nil?
 
   _, month_name, day = date_regex_result.captures

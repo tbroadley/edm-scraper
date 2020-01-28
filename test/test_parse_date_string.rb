@@ -43,6 +43,11 @@ class TestParseDateString < Minitest::Test
     assert_equal Time.new(2006, 6, 22), parse_date_string('Thursday, June 22rd')
   end
 
+  def test_parsing_date_string_with_text_after
+    assert_equal Time.new(2006, 6, 22),
+                 parse_date_string('Thursday, June 22nd (starts at 1 am)')
+  end
+
   def test_parse_date_string_handles_non_date
     assert_nil parse_date_string('After V')
   end
