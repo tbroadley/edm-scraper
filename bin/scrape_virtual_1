@@ -20,6 +20,28 @@ end
 Capybara.default_driver = :poltergeist
 Capybara.default_max_wait_time = 0
 
+def create_show(name)
+  show = Show.new(
+    name: name,
+    start_date: Date.today + 1,
+    end_date: Date.today + 2,
+    venue: 'Online',
+    filter: false
+  )
+  puts show.save_and_return_message
+end
+
+def maybe_create_show(element)
+  return unless element.has_css?(NAME_CSS)
+
+  name_element = element.first(NAME_CSS)
+  name = name_element.text.strip
+
+  return unless Show.find_by(name: name).nil?
+
+  create_show(name)
+end
+
 in_live_stream_section = false
 
 send_email_if_rescue('scrape_virtual_1') do
@@ -41,20 +63,6 @@ send_email_if_rescue('scrape_virtual_1') do
       break
     end
 
-    next unless element.has_css?(NAME_CSS)
-
-    name_element = element.first(NAME_CSS)
-    name = name_element.text.strip
-
-    next unless Show.find_by(name: name).nil?
-
-    show = Show.new(
-      name: name,
-      start_date: Date.today + 1,
-      end_date: Date.today + 2,
-      venue: 'Online',
-      filter: false
-    )
-    puts show.save_and_return_message
+    maybe_create_show(element)
   end
 end
