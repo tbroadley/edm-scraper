@@ -44,8 +44,12 @@ send_email_if_rescue('scrape_virtual_1') do
     next unless element.has_css?(NAME_CSS)
 
     name_element = element.first(NAME_CSS)
+    name = name_element.text.strip
+
+    next unless Show.find_by(name: name).nil?
+
     show = Show.new(
-      name: name_element.text.strip,
+      name: name,
       start_date: Date.today + 1,
       end_date: Date.today + 2,
       venue: 'Online',
