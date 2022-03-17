@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
 source 'http://rubygems.org'
-ruby '2.4.6'
+ruby '3.1.1'
 
-gem 'activerecord', '~> 5.1'
-gem 'capybara', '3.12.0'
-gem 'dotenv-rails', '2.6.0'
-gem 'pg', '0.21.0'
+gem 'activerecord', '~> 7.0'
+gem 'capybara', '3.36.0'
+gem 'dotenv-rails', '2.7.6'
+gem 'pg', '1.3.4'
 gem 'poltergeist', '1.18.1'
 gem 'postageapp', '1.3.1'
 
-gem 'activerecord-nulldb-adapter', '0.3.7'
+gem 'activerecord-nulldb-adapter', '0.8.0'
 gem 'guard', '2.15.0'
 gem 'guard-minitest', '2.4.6'
 gem 'minitest', '5.10.3'
