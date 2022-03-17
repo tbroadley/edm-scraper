@@ -26,8 +26,9 @@ end
 def parse_element(element)
   match = /(.*) - (.*) @ (.*)/.match(element.text)
   if match.nil?
-    raise "Element with text '#{element.text}' does not match expected " \
-          'format (name - date @ venue)'
+    puts "Element with text '#{element.text}' does not match expected " \
+         'format (name - date @ venue)'
+    return []
   end
 
   match.captures
@@ -42,6 +43,8 @@ end
 
 def show_parameters(element)
   date_string, name, venue = parse_element(element)
+  return nil if date_string.nil? or name.nil? or venue.nil?
+
   start_date, end_date = parse_dates(date_string)
 
   {
@@ -62,6 +65,8 @@ send_email_if_rescue('scrape') do
     next if element.text.start_with?('Support EDM Canada')
 
     params = show_parameters(element)
+    next if params.nil?
+
     date = params[:start_date]
     next unless date && (
       date < Date.new(2018, 5, 1) || date > Date.new(2018, 8, 31)
