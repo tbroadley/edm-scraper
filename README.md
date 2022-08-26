@@ -7,6 +7,24 @@ Scripts for:
 
 The project is hosted on [Heroku](https://edm-scraper.herokuapp.com/).
 
+## Running in production
+
+Install Ruby 3.1.1.
+
+Install PostgreSQL, then create a database called `edm-scraper` and a user called `user`.
+
+Create a file called `.env` in the project's root directory or otherwise set up these environment variables:
+
+```
+DATABASE_ENV=production
+DATABASE_URL=localhost:5432
+POSTAGEAPP_API_KEY=...
+```
+
+### Running the code
+
+Invoke `ruby bin/TASK` to run a specific task.
+
 ## Development
 
 Install Ruby 3.1.1.
