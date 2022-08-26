@@ -19,11 +19,11 @@ Create a file called `.env` in the project's root directory or otherwise set up 
 
 ```
 DATABASE_ENV=production
-DATABASE_URL=localhost:5432
-POSTAGEAPP_API_KEY=...
+DATABASE_URL=postgres://user:[password]@localhost:5432/edm-scraper
+POSTAGEAPP_API_KEY=[API key]
 ```
 
-Run `ruby bin/migrate` to apply migrations to the PostgreSQL database.
+Run `ruby bin/migrate up` to apply migrations to the PostgreSQL database.
 
 ### Running the code
 

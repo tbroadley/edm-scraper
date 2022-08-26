@@ -3,3 +3,5 @@
 
 require_relative '../environment'
 require_relative '../db/migrations/001_create_shows_table'
+require_relative '../db/migrations/002_add_filter_column.rb'
+require_relative '../db/migrations/003_change_filter_column.rb'
