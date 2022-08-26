@@ -13,6 +13,8 @@ Install Ruby 3.1.1.
 
 Install PostgreSQL, then create a database called `edm-scraper` and a user called `user`.
 
+Run `bundle` to install dependencies.
+
 Create a file called `.env` in the project's root directory or otherwise set up these environment variables:
 
 ```
@@ -20,6 +22,8 @@ DATABASE_ENV=production
 DATABASE_URL=localhost:5432
 POSTAGEAPP_API_KEY=...
 ```
+
+Run `ruby bin/migrate` to apply migrations to the PostgreSQL database.
 
 ### Running the code
 
