@@ -5,8 +5,6 @@ Scripts for:
 - Storing the scraped shows in a database
 - Compiling new shows into an email, sent using PostageApp
 
-The project is hosted on [Heroku](https://edm-scraper.herokuapp.com/).
-
 ## Running in production
 
 Install Ruby 3.1.1.
