@@ -11,6 +11,8 @@ The project is hosted on [Heroku](https://edm-scraper.herokuapp.com/).
 
 Install Ruby 3.1.1.
 
+Install PhantomJS.
+
 Install PostgreSQL, then create a database called `edm-scraper` and a user called `user`.
 
 Run `bundle` to install dependencies.
