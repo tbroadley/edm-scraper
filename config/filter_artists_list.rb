@@ -174,4 +174,5 @@ FILTER_ARTISTS_LIST = [
   'Bill Wurtz',
   'billwurtz',
   'Dua Lipa',
+  'Pinkertones',
 ].freeze
