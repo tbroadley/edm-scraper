@@ -10,17 +10,17 @@ require_relative '../environment'
 include Capybara::DSL
 
 Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, js_errors: false)
+  Capybara::Poltergeist::Driver.new(app, js_errors: false, phantomjs_options: ['--ssl-protocol=any'])
 end
 
 Capybara.default_driver = :poltergeist
 Capybara.default_max_wait_time = 0.1
 
-visit('http://concertsto.com/')
-
 current_date = nil
 
 send_email_if_rescue('scrape2') do
+  visit('https://concertsto.com/')
+
   all('#c tr').each do |element|
     if element[:class] == 'date'
       current_date = parse_date_string_2(element.text)
